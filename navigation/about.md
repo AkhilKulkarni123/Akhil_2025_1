@@ -73,3 +73,4 @@ Creator of Student 2025
         container.appendChild(gridItem);
     }
 </script>
+<p>I am Akhil Kulkarni, and have origins in India. I am the Class of 2028, and my favorite color is orange. I code in the python programming language: and</p>
