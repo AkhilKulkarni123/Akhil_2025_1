@@ -80,4 +80,5 @@ Creator of Student 2025
     I was born on the exact day my doctor predicted me to be born - What a coincidence!
     My first ever phone was an iPhone 12.
     I have a PC with a terabyte of storage and 32 Gigabytes of RAM!
-    I also have a youtube channel that I often post programming videos on for fun!</p>
+    I also have a youtube channel that I often post programming videos on for fun!
+    I am 14 years old, and I have a freidns name d SHreays</p>
