@@ -73,4 +73,11 @@ Creator of Student 2025
         container.appendChild(gridItem);
     }
 </script>
-<p>I am Akhil Kulkarni, and have origins in India. I am the Class of 2028, and my favorite color is orange. I code in the python programming language: and</p>
+<p>I am Akhil Kulkarni, and have origins in India. I am the Class of 2028, and my favorite color is orange. I code in the python programming language!
+    I used to live in Dallas, Texas, and moves to San Diego at the age of 2 years old.
+    I don't have any siblings, but have over 20 cousins!
+    I play tennis, swimming, and piano fo rextracurriculars and hobbbies!
+    I was born on the exact day my doctor predicted me to be born - What a coincidence!
+    My first ever phone was an iPhone 12.
+    I have a PC with a terabyte of storage and 32 Gigabytes of RAM!
+    I also have a youtube channel that I often post programming videos on for fun!</p>
