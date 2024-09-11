@@ -82,7 +82,4 @@ Creator of Student 2025
     I have a PC with a terabyte of storage and 32 Gigabytes of RAM!
     I also have a youtube channel that I often post programming videos on for fun!</p>
 
-<p>https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png 
-https://upload.wikimedia.org/wikipedia/commons/3/3e/Tennis_Racket_and_Balls.jpg
-![image](https://github.com/user-attachments/assets/faa53bba-0ab8-42b7-83cc-3bd26f83baed)
-<img src="https://www.teachers-tools.com/media/catalog/product/cache/3154772c9615514b1458c51736cabcb9/t/c/tcr7896_AHM9UoA70B2f4wdQ.jpg" alt="Colorful Math Symbols Poster"/>![image](https://github.com/user-attachments/assets/2d7017d0-c822-429d-860f-1474f6459805)</p>
+<p><img src="https://www.teachers-tools.com/media/catalog/product/cache/3154772c9615514b1458c51736cabcb9/t/c/tcr7896_AHM9UoA70B2f4wdQ.jpg" alt="Colorful Math Symbols Poster"/>![image](https://github.com/user-attachments/assets/2d7017d0-c822-429d-860f-1474f6459805)</p>
