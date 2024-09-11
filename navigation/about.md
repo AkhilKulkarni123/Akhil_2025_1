@@ -76,8 +76,13 @@ Creator of Student 2025
 <p>I am Akhil Kulkarni, and have origins in India. I am the Class of 2028, and my favorite color is orange. I code in the python programming language!
     I used to live in Dallas, Texas, and moves to San Diego at the age of 2 years old.
     I don't have any siblings, but have over 20 cousins!
-    I play tennis, swimming, and piano fo rextracurriculars and hobbbies!
+    I play tennis, swimming, and piano for extracurriculars and hobbbies!
     I was born on the exact day my doctor predicted me to be born - What a coincidence!
     My first ever phone was an iPhone 12.
     I have a PC with a terabyte of storage and 32 Gigabytes of RAM!
     I also have a youtube channel that I often post programming videos on for fun!</p>
+
+<p>https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png 
+https://upload.wikimedia.org/wikipedia/commons/3/3e/Tennis_Racket_and_Balls.jpg
+![image](https://github.com/user-attachments/assets/faa53bba-0ab8-42b7-83cc-3bd26f83baed)
+<img src="https://www.teachers-tools.com/media/catalog/product/cache/3154772c9615514b1458c51736cabcb9/t/c/tcr7896_AHM9UoA70B2f4wdQ.jpg" alt="Colorful Math Symbols Poster"/>![image](https://github.com/user-attachments/assets/2d7017d0-c822-429d-860f-1474f6459805)</p>
