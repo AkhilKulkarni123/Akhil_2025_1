@@ -210,3 +210,18 @@ Sample of bullets
 - Grades are on projects, learnt concepts, and live reviews between student(s) and teacher
 Jelly Fish Fun
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Redirect</title>
+</head>
+<body>
+    <button onclick="window.location.href='https://akhilkulkarni123.github.io/Akhil_2025_1/about/'">
+        Go to About Page
+    </button>
+</body>
+</html>
+
