@@ -211,7 +211,7 @@ Sample of bullets
 Jelly Fish Fun
 
 
-https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jelly_cc11.jpg/800px-Jelly_cc11.jpg
+
 
 <!DOCTYPE html>
 <html lang="en">
