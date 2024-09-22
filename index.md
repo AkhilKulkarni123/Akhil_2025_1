@@ -208,6 +208,7 @@ Sample of bullets
 - Performing team work, team communication and collaboration, peer reviews/grading
 - Focus on tehnical communications through project presentations and student led teaching
 - Grades are on projects, learnt concepts, and live reviews between student(s) and teacher
+https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FJellyfish&psig=AOvVaw0PgwYXJpLp8XfSz7Qlr53V&ust=1727120925847000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMD5w_uo14gDFQAAAAAdAAAAABAE
 Jelly Fish Fun
 
 
