@@ -80,7 +80,8 @@ Creator of Student 2025
     I was born on the exact day my doctor predicted me to be born - What a coincidence!
     My first ever phone was an iPhone 12.
     I have a PC with a terabyte of storage and 32 Gigabytes of RAM!
-    I also have a youtube channel that I often post programming videos on for fun!</p>
+    I also have a youtube channel that I often post programming videos on for fun! 
+    My favorite food is pizza, pasta, and chocolate cake. I love playing tennis daily, and started biking without training wheels at the age of 4.</p>
 
 <p><img src="https://www.teachers-tools.com/media/catalog/product/cache/3154772c9615514b1458c51736cabcb9/t/c/tcr7896_AHM9UoA70B2f4wdQ.jpg" alt="Colorful Math Symbols Poster"/>![image](https://github.com/user-attachments/assets/2d7017d0-c822-429d-860f-1474f6459805)</p>
 
