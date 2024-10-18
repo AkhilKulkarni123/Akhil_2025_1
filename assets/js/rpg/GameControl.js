@@ -44,3 +44,51 @@ const GameControl = {
 window.addEventListener('resize', GameControl.resize.bind(GameControl));
 
 export default GameControl;
+
+import { Player } from './player.js';
+import { Projectile } from './projectile.js';
+import { PowerUp } from './powerup.js';
+import { NPC } from './npc.js';
+
+const player = new Player(100, 100);
+const npc = new NPC(400, 300);
+const projectiles = [];
+const powerUps = [];
+
+function spawnProjectile() {
+    const newProjectile = new Projectile(800, Math.random() * 600, 2, 1);
+    projectiles.push(newProjectile);
+}
+
+function spawnPowerUp() {
+    const type = Math.random() < 0.5 ? 'invincibility' : 'speed';
+    const powerUp = new PowerUp(type, Math.random() * 800, Math.random() * 600);
+    powerUps.push(powerUp);
+}
+
+function updateGame(ctx) {
+    ctx.clearRect(0, 0, 800, 600);
+
+    player.draw(ctx);
+    npc.draw(ctx);
+
+    projectiles.forEach((proj) => {
+        proj.update(player);
+        proj.draw(ctx);
+    });
+
+    powerUps.forEach((powerUp) => {
+        powerUp.draw(ctx);
+    });
+
+    requestAnimationFrame(() => updateGame(ctx));
+}
+
+export function startGame() {
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    updateGame(ctx);
+
+    setInterval(spawnProjectile, 2000);
+    setInterval(spawnPowerUp, 10000);
+}

@@ -256,3 +256,31 @@ class Player {
 }
 
 export default Player;
+
+export class Player {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = 15;
+        this.color = 'blue';
+        this.speed = 5;
+        this.health = 5;
+        this.score = 0;
+        this.isInvincible = false;
+    }
+
+    draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.isInvincible ? 'yellow' : this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    move(direction) {
+        if (direction === 'up') this.y -= this.speed;
+        if (direction === 'down') this.y += this.speed;
+        if (direction === 'left') this.x -= this.speed;
+        if (direction === 'right') this.x += this.speed;
+    }
+}
