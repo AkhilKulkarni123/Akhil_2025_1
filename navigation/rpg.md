@@ -4,20 +4,22 @@ title: RPG
 permalink: /rpg/
 ---
 
-<canvas id="gameCanvas" width="800" height="600"></canvas>
+<canvas id="gameCanvas" width="800" height="600" style="border:1px solid black;"></canvas>
 
 <script>
-    // Canvas and Context Setup
+    console.log("Game script started!");  // Log to confirm script execution.
+
+    // Canvas Setup
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
-    // Player Setup
-    const player = { x: 50, y: canvas.height / 2, width: 40, height: 40 };
+    // Player Initialization
+    const player = { x: 50, y: canvas.height / 2 - 20, width: 40, height: 40 };
 
-    // Projectile Setup
+    // Projectile Initialization
     const projectile = {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * (canvas.width - 20),
+        y: Math.random() * (canvas.height - 20),
         width: 20,
         height: 20,
     };
@@ -33,14 +35,12 @@ permalink: /rpg/
         projectile.x += (Math.random() - 0.5) * 6;
         projectile.y += (Math.random() - 0.5) * 6;
 
-        // Keep projectile within bounds
-        if (projectile.x < 0) projectile.x = 0;
-        if (projectile.x + projectile.width > canvas.width) projectile.x = canvas.width - projectile.width;
-        if (projectile.y < 0) projectile.y = 0;
-        if (projectile.y + projectile.height > canvas.height) projectile.y = canvas.height - projectile.height;
+        // Keep the projectile within canvas bounds
+        projectile.x = Math.max(0, Math.min(projectile.x, canvas.width - projectile.width));
+        projectile.y = Math.max(0, Math.min(projectile.y, canvas.height - projectile.height));
     }
 
-    // Check for Collisions
+    // Collision Detection
     function checkCollision() {
         if (
             player.x < projectile.x + projectile.width &&
@@ -49,30 +49,35 @@ permalink: /rpg/
             player.y + player.height > projectile.y
         ) {
             gameRunning = false;
-            alert("You hit the projectile! Game over.");
+            alert("Game over! You hit the projectile.");
             resetGame();
         }
     }
 
-    // Reset Game State
+    // Reset the Game
     function resetGame() {
         survivalTime = 0;
-        projectile.x = Math.random() * canvas.width;
-        projectile.y = Math.random() * canvas.height;
+        projectile.x = Math.random() * (canvas.width - 20);
+        projectile.y = Math.random() * (canvas.height - 20);
         gameRunning = true;
-        gameLoop(); // Restart the game
+        gameLoop();
     }
 
-    // Draw Game Elements
+    // Draw the Game
     function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);  // Clear canvas
+
+        // Draw Player
         ctx.fillStyle = "green";
         ctx.fillRect(player.x, player.y, player.width, player.height);
 
+        // Draw Projectile
         ctx.drawImage(projectileImage, projectile.x, projectile.y, projectile.width, projectile.height);
 
+        // Display Survival Time
         ctx.fillStyle = "black";
-        ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 20);
+        ctx.font = "20px Arial";
+        ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 30);
     }
 
     // Main Game Loop
@@ -85,16 +90,23 @@ permalink: /rpg/
 
             if (survivalTime >= 20) {
                 gameRunning = false;
-                alert("You survived for 20 seconds! You win!");
-                if (confirm("Would you like to play again?")) resetGame();
+                alert("You survived 20 seconds! You win!");
+                if (confirm("Play again?")) resetGame();
             }
 
             requestAnimationFrame(gameLoop);
         }
     }
 
-    // Start the Game Loop Once Image is Loaded
-    projectileImage.onload = gameLoop;
+    // Start the Game After Image Loads
+    projectileImage.onload = () => {
+        console.log("Projectile image loaded successfully.");
+        gameLoop();
+    };
+
+    projectileImage.onerror = () => {
+        console.error("Failed to load projectile image.");
+    };
 
     // Player Movement with WASD Keys
     document.addEventListener("keydown", (event) => {
@@ -105,10 +117,10 @@ permalink: /rpg/
             case "d": player.x += 10; break;
         }
 
-        // Keep Player within Canvas Boundaries
-        player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
-        player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
+        // Keep Player within Canvas
+        player.x = Math.max(0, Math.min(player.x, canvas.width - player.width));
+        player.y = Math.max(0, Math.min(player.y, canvas.height - player.height));
     });
+
+    console.log("Game setup complete.");
 </script>
-
-
