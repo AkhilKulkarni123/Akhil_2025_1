@@ -9,8 +9,8 @@ permalink: /rpg/
 <script type="module">
     import "{{site.baseurl}}/assets/js/rpg/MissileGame.js";
 
-    // Ensure the game only starts once the window is fully loaded
+    // Ensure the game starts when the page loads
     window.onload = () => {
-        console.log("Game loaded successfully.");
+        console.log("Missile dodging game loaded.");
     };
 </script>
