@@ -19,6 +19,8 @@ window.onload = () => {
     let gameRunning = true;
     let survivalTime = 0;
 
+    let lastUpdateTime = Date.now();  // Track when the timer was last updated
+
     // Random projectile movement
     function moveProjectile() {
         projectile.x += (Math.random() - 0.5) * 6;
@@ -66,13 +68,22 @@ window.onload = () => {
         ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 20);
     }
 
+    // Update the survival time based on real seconds
+    function updateSurvivalTime() {
+        const now = Date.now();
+        if (now - lastUpdateTime >= 1000) {  // If 1 second has passed
+            survivalTime++;
+            lastUpdateTime = now;
+        }
+    }
+
     // Main game loop
     function gameLoop() {
         if (gameRunning) {
             moveProjectile();
             checkCollision();
+            updateSurvivalTime();
             draw();
-            survivalTime += 0.1;
 
             if (survivalTime >= 20) {
                 gameRunning = false;
