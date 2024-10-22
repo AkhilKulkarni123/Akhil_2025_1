@@ -4,7 +4,7 @@ title: RPG
 permalink: /rpg/
 ---
 
-<canvas id='gameCanvas' width="1038" height="580"></canvas>
+<canvas id='gameCanvas' width="1038" height="580" style="background-color: lightblue;"></canvas>
 
 <script type="module">
     import GameControl from '{{site.baseurl}}/assets/js/rpg/GameControl.js';
@@ -36,6 +36,8 @@ permalink: /rpg/
     // Start the main RPG game engine
     GameControl.start(assets);
 
-    // Start the missile game on top of the RPG environment
-    MissileGame.start();
+    // Start the missile game logic
+    window.onload = () => {
+        MissileGame.start();
+    };
 </script>
