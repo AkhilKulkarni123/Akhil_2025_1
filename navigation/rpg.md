@@ -6,7 +6,109 @@ permalink: /rpg/
 
 <canvas id="gameCanvas" width="800" height="600"></canvas>
 
-<script type="module">
-    import "{{site.baseurl}}/assets/js/rpg/MissileGame.js";
+<script>
+    // Canvas and Context Setup
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Player Setup
+    const player = { x: 50, y: canvas.height / 2, width: 40, height: 40 };
+
+    // Projectile Setup
+    const projectile = {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        width: 20,
+        height: 20,
+    };
+
+    const projectileImage = new Image();
+    projectileImage.src = "{{site.baseurl}}/images/rpg/projectile.png";
+
+    let gameRunning = true;
+    let survivalTime = 0;
+
+    // Random Projectile Movement
+    function moveProjectile() {
+        projectile.x += (Math.random() - 0.5) * 6;
+        projectile.y += (Math.random() - 0.5) * 6;
+
+        // Keep projectile within bounds
+        if (projectile.x < 0) projectile.x = 0;
+        if (projectile.x + projectile.width > canvas.width) projectile.x = canvas.width - projectile.width;
+        if (projectile.y < 0) projectile.y = 0;
+        if (projectile.y + projectile.height > canvas.height) projectile.y = canvas.height - projectile.height;
+    }
+
+    // Check for Collisions
+    function checkCollision() {
+        if (
+            player.x < projectile.x + projectile.width &&
+            player.x + player.width > projectile.x &&
+            player.y < projectile.y + projectile.height &&
+            player.y + player.height > projectile.y
+        ) {
+            gameRunning = false;
+            alert("You hit the projectile! Game over.");
+            resetGame();
+        }
+    }
+
+    // Reset Game State
+    function resetGame() {
+        survivalTime = 0;
+        projectile.x = Math.random() * canvas.width;
+        projectile.y = Math.random() * canvas.height;
+        gameRunning = true;
+        gameLoop(); // Restart the game
+    }
+
+    // Draw Game Elements
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "green";
+        ctx.fillRect(player.x, player.y, player.width, player.height);
+
+        ctx.drawImage(projectileImage, projectile.x, projectile.y, projectile.width, projectile.height);
+
+        ctx.fillStyle = "black";
+        ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 20);
+    }
+
+    // Main Game Loop
+    function gameLoop() {
+        if (gameRunning) {
+            moveProjectile();
+            checkCollision();
+            draw();
+            survivalTime += 0.1;
+
+            if (survivalTime >= 20) {
+                gameRunning = false;
+                alert("You survived for 20 seconds! You win!");
+                if (confirm("Would you like to play again?")) resetGame();
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+    }
+
+    // Start the Game Loop Once Image is Loaded
+    projectileImage.onload = gameLoop;
+
+    // Player Movement with WASD Keys
+    document.addEventListener("keydown", (event) => {
+        switch (event.key) {
+            case "w": player.y -= 10; break;
+            case "s": player.y += 10; break;
+            case "a": player.x -= 10; break;
+            case "d": player.x += 10; break;
+        }
+
+        // Keep Player within Canvas Boundaries
+        player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+        player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
+    });
 </script>
+
 
