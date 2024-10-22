@@ -1,27 +1,33 @@
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
 
-let player = { x: 50, y: canvas.height / 2, width: 40, height: 40 }; // Turtle
-let projectile = { x: Math.random() * canvas.width, y: Math.random() * canvas.height, width: 20, height: 20 };
+let player = { x: 50, y: canvas.height / 2, width: 40, height: 40 };
+let projectile = {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    width: 20,
+    height: 20
+};
 let gameRunning = true;
 let survivalTime = 0;
-let gameOver = false;
-
-// Load the projectile sprite
 let projectileImage = new Image();
-projectileImage.src = "images/projectile.png"; // Update with the correct path to your projectile image
+projectileImage.src = "{{site.baseurl}}/images/rpg/projectile.png"; // Ensure the path is correct
 
+// Handles the projectile's random movement
 function moveProjectile() {
-    projectile.x += (Math.random() - 0.5) * 4; // Move randomly in x direction
-    projectile.y += (Math.random() - 0.5) * 4; // Move randomly in y direction
+    projectile.x += (Math.random() - 0.5) * 4;
+    projectile.y += (Math.random() - 0.5) * 4;
 
-    // Keep the projectile within bounds
+    // Keep projectile inside the canvas
     if (projectile.x < 0) projectile.x = 0;
-    if (projectile.x + projectile.width > canvas.width) projectile.x = canvas.width - projectile.width;
+    if (projectile.x + projectile.width > canvas.width) 
+        projectile.x = canvas.width - projectile.width;
     if (projectile.y < 0) projectile.y = 0;
-    if (projectile.y + projectile.height > canvas.height) projectile.y = canvas.height - projectile.height;
+    if (projectile.y + projectile.height > canvas.height) 
+        projectile.y = canvas.height - projectile.height;
 }
 
+// Checks if the player collides with the projectile
 function checkCollision() {
     if (
         projectile.x < player.x + player.width &&
@@ -30,12 +36,12 @@ function checkCollision() {
         projectile.y + projectile.height > player.y
     ) {
         gameRunning = false;
-        gameOver = true;
         alert("You hit the projectile! Game over.");
         resetGame();
     }
 }
 
+// Resets the game state
 function resetGame() {
     survivalTime = 0;
     projectile.x = Math.random() * canvas.width;
@@ -43,63 +49,63 @@ function resetGame() {
     gameRunning = true;
 }
 
+// Draws the player and projectile
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "green"; // Color for the player
-    ctx.fillRect(player.x, player.y, player.width, player.height); // Draw the player
+    ctx.fillStyle = "green";
+    ctx.fillRect(player.x, player.y, player.width, player.height);
 
-    ctx.drawImage(projectileImage, projectile.x, projectile.y, projectile.width, projectile.height); // Draw the projectile
+    ctx.drawImage(projectileImage, projectile.x, projectile.y, projectile.width, projectile.height);
 
     ctx.fillStyle = "black";
-    ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 20); // Draw survival time
+    ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 20);
 
-    if (gameRunning) {
-        requestAnimationFrame(draw);
-    }
+    if (gameRunning) requestAnimationFrame(draw);
 }
 
+// Main game loop to update the game state
 function gameLoop() {
     if (gameRunning) {
         moveProjectile();
         checkCollision();
         draw();
-        survivalTime += 0.1; // Increase survival time
+        survivalTime += 0.1;
+
         if (survivalTime >= 20) {
             gameRunning = false;
-            gameOver = true;
-            alert("You survived for 20 seconds! You win!");
-            let playAgain = confirm("Would you like to play again?");
-            if (playAgain) {
-                resetGame();
-            }
+            alert("You survived 20 seconds! You win!");
+            if (confirm("Play again?")) resetGame();
         }
-        setTimeout(gameLoop, 100); // Continue the game loop
+
+        setTimeout(gameLoop, 100);
     }
 }
 
-// Start the game loop
-gameLoop();
-
-// Control the player with WASD
-document.addEventListener("keydown", function(event) {
+// Player movement with WASD keys
+document.addEventListener("keydown", function (event) {
     switch (event.key) {
         case "w":
-            player.y -= 10; // Move up
+            player.y -= 10;
             break;
         case "s":
-            player.y += 10; // Move down
+            player.y += 10;
             break;
         case "a":
-            player.x -= 10; // Move left
+            player.x -= 10;
             break;
         case "d":
-            player.x += 10; // Move right
+            player.x += 10;
             break;
     }
 
-    // Keep player within bounds
+    // Keep the player within canvas bounds
     if (player.y < 0) player.y = 0;
-    if (player.y + player.height > canvas.height) player.y = canvas.height - player.height;
+    if (player.y + player.height > canvas.height) 
+        player.y = canvas.height - player.height;
     if (player.x < 0) player.x = 0;
-    if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+    if (player.x + player.width > canvas.width) 
+        player.x = canvas.width - player.width;
 });
+
+// Start the game
+gameLoop();
