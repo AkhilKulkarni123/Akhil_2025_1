@@ -16,10 +16,12 @@ window.onload = () => {
     const projectileImage = new Image();
     projectileImage.src = "{{site.baseurl}}/images/rpg/projectile.png";
 
+    const backgroundImage = new Image();
+    backgroundImage.src = "{{site.baseurl}}/images/rpg/water.png";  // Background image path
+
     let gameRunning = true;
     let survivalTime = 0;
-
-    let lastUpdateTime = Date.now();  // Track when the timer was last updated
+    let lastUpdateTime = Date.now();  // Track time for survival counter
 
     // Random projectile movement
     function moveProjectile() {
@@ -27,10 +29,8 @@ window.onload = () => {
         projectile.y += (Math.random() - 0.5) * 6;
 
         // Keep projectile within bounds
-        if (projectile.x < 0) projectile.x = 0;
-        if (projectile.x + projectile.width > canvas.width) projectile.x = canvas.width - projectile.width;
-        if (projectile.y < 0) projectile.y = 0;
-        if (projectile.y + projectile.height > canvas.height) projectile.y = canvas.height - projectile.height;
+        projectile.x = Math.max(0, Math.min(canvas.width - projectile.width, projectile.x));
+        projectile.y = Math.max(0, Math.min(canvas.height - projectile.height, projectile.y));
     }
 
     // Check for collisions
@@ -42,36 +42,44 @@ window.onload = () => {
             player.y + player.height > projectile.y
         ) {
             gameRunning = false;
-            alert("You hit the projectile! Game over.");
+            alert("Game over! You hit the projectile.");
             resetGame();
         }
     }
 
-    // Reset game state
+    // Reset the game
     function resetGame() {
         survivalTime = 0;
         projectile.x = Math.random() * canvas.width;
         projectile.y = Math.random() * canvas.height;
         gameRunning = true;
-        gameLoop(); // Restart the game
+        gameLoop();  // Restart the game
     }
 
     // Draw the game elements
     function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);  // Clear canvas
+
+        // Draw background
+        ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+        // Draw player
         ctx.fillStyle = "green";
         ctx.fillRect(player.x, player.y, player.width, player.height);
 
+        // Draw projectile
         ctx.drawImage(projectileImage, projectile.x, projectile.y, projectile.width, projectile.height);
 
+        // Display survival time
         ctx.fillStyle = "black";
-        ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 20);
+        ctx.font = "20px Arial";
+        ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 30);
     }
 
-    // Update the survival time based on real seconds
+    // Update the survival time
     function updateSurvivalTime() {
         const now = Date.now();
-        if (now - lastUpdateTime >= 90000000000000) {  // If 1 second has passed
+        if (now - lastUpdateTime >= 1000) {  // If 1 second has passed
             survivalTime++;
             lastUpdateTime = now;
         }
@@ -85,30 +93,18 @@ window.onload = () => {
             updateSurvivalTime();
             draw();
 
-            if (survivalTime >= 100000000000000000) {
+            if (survivalTime >= 20) {
                 gameRunning = false;
                 alert("You survived for 20 seconds! You win!");
-                if (confirm("Would you like to play again?")) resetGame();
+                if (confirm("Play again?")) resetGame();
             }
 
             requestAnimationFrame(gameLoop);
         }
     }
 
-    // Start the game loop when assets are loaded
-    projectileImage.onload = gameLoop;
-
-    // Player movement with WASD keys
-    document.addEventListener("keydown", (event) => {
-        switch (event.key) {
-            case "w": player.y -= 10; break;
-            case "s": player.y += 10; break;
-            case "a": player.x -= 10; break;
-            case "d": player.x += 10; break;
-        }
-
-        // Keep player within canvas boundaries
-        player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
-        player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
-    });
+    // Start the game when all images are loaded
+    backgroundImage.onload = () => {
+        projectileImage.onload = gameLoop;
+    };
 };
