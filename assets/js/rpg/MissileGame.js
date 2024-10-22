@@ -85,7 +85,7 @@ window.onload = () => {
             updateSurvivalTime();
             draw();
 
-            if (survivalTime >= 20) {
+            if (survivalTime >= 100000000000000000) {
                 gameRunning = false;
                 alert("You survived for 20 seconds! You win!");
                 if (confirm("Would you like to play again?")) resetGame();
