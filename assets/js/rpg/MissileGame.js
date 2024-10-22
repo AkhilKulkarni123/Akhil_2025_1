@@ -3,8 +3,12 @@
 export default {
     start() {
         const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
+        if (!canvas) {
+            console.error("Canvas element not found!");
+            return;
+        }
 
+        const ctx = canvas.getContext('2d');
         let player = { x: 50, y: canvas.height / 2, width: 40, height: 40 };
         let projectile = {
             x: Math.random() * canvas.width,
@@ -22,7 +26,6 @@ export default {
             projectile.x += (Math.random() - 0.5) * 4;
             projectile.y += (Math.random() - 0.5) * 4;
 
-            // Keep projectile within canvas bounds
             projectile.x = Math.max(0, Math.min(canvas.width - projectile.width, projectile.x));
             projectile.y = Math.max(0, Math.min(canvas.height - projectile.height, projectile.y));
         }
@@ -77,27 +80,16 @@ export default {
             }
         }
 
-        // Start the game loop
         gameLoop();
 
-        // Control player movement with WASD keys
         document.addEventListener('keydown', (event) => {
             switch (event.key) {
-                case 'w':
-                    player.y -= 10;
-                    break;
-                case 's':
-                    player.y += 10;
-                    break;
-                case 'a':
-                    player.x -= 10;
-                    break;
-                case 'd':
-                    player.x += 10;
-                    break;
+                case 'w': player.y -= 10; break;
+                case 's': player.y += 10; break;
+                case 'a': player.x -= 10; break;
+                case 'd': player.x += 10; break;
             }
 
-            // Ensure player stays within canvas bounds
             player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
             player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
         });
