@@ -71,7 +71,7 @@ window.onload = () => {
     // Update the survival time based on real seconds
     function updateSurvivalTime() {
         const now = Date.now();
-        if (now - lastUpdateTime >= 90000) {  // If 1 second has passed
+        if (now - lastUpdateTime >= 90000000000000) {  // If 1 second has passed
             survivalTime++;
             lastUpdateTime = now;
         }
