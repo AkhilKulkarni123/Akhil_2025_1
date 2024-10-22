@@ -1,6 +1,6 @@
 ---
-layout: base
-title: RPG
+layout: base 
+title: RPG 
 permalink: /rpg/
 ---
 
@@ -24,10 +24,10 @@ permalink: /rpg/
         ANIMATION_RATE: 50,
         pixels: {height: 280, width: 256},
         orientation: {rows: 4, columns: 3 },
-        down: {row: 0, start: 0, columns: 3 },
+        up: {row: 0, start: 0, columns: 3 },
         left: {row: 1, start: 0, columns: 3 },
         right: {row: 2, start: 0, columns: 3 },
-        up: {row: 3, start: 0, columns: 3 },
+        down: {row: 3, start: 0, columns: 3 },
     };
     const sprite = {src: sprite_src, data: sprite_data};
 
@@ -40,22 +40,3 @@ permalink: /rpg/
     // Start game engine
     GameControl.start(assets);
 </script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPG Game</title>
-    <style>
-        canvas {
-            background-image: url('water.png');
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
-    <script type="module" src="../assets/gamecontrol.js"></script>
-</body>
-</html>
