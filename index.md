@@ -258,10 +258,10 @@ This blog contains my journey into Coding.
 > Coding starts with tools, explore these tools and procedures with a click.
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <a href="https://github.com/jm1021/john_2025">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1">
         <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
     </a>
-    <a href="https://jm1021.github.io/john_2025/">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/actions">
         <img src="https://img.shields.io/badge/GitHub%20Pages-327FC7?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Pages">
     </a>
     <a href="https://kasm.nighthawkcodingsociety.com/">
@@ -287,19 +287,9 @@ This blog contains my journey into Coding.
             Snake Game
         </div>
     </a>
-    <a href="{{site.baseurl}}/rpg/dot0" style="text-decoration: none;">
+    <a href="https://akhilkulkarni123.github.io/Akhil_2025_1/rpg/" style="text-decoration: none;">
         <div style="background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Turtle v0.0
-        </div>
-    </a>
-    <a href="{{site.baseurl}}/rpg/dot1" style="text-decoration: none;">
-        <div style="background-color: #FF8800; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Turtle v0.1
-        </div>
-    </a>
-    <a href="{{site.baseurl}}/rpg/dot2" style="text-decoration: none;">
-        <div style="background-color: #FFFF00; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Turtle v0.2
+            RPG
         </div>
     </a>
 </div>
@@ -321,7 +311,14 @@ This blog contains my journey into Coding.
             Data Types
         </div>
     </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2024-09-30-for_sprites.ipynb" style="text-decoration: none;">
+        <div style="background-color: #00BFFF; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            For Loops and Sprite Hack
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Game Animation
+        </div>
+    </a>
 </div>
-
-
-
