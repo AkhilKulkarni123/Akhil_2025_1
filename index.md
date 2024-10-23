@@ -287,7 +287,7 @@ This blog contains my journey into Coding.
             Snake Game
         </div>
     </a>
-    <a href="https://akhilkulkarni123.github.io/Akhil_2025_1/rpg/" style="text-decoration: none;">
+    <a href="https://akhilkulkarni123.github.io/Akhil_2025_1/rpg0x/" style="text-decoration: none;">
         <div style="background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             RPG
         </div>
