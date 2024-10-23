@@ -311,7 +311,7 @@ This blog contains my journey into Coding.
             Data Types
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2024-09-30-for_sprites.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/fundamentals/for-loops/" style="text-decoration: none;">
         <div style="background-color: #00BFFF; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             For Loops and Sprite Hack
         </div>
