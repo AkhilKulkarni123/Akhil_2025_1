@@ -17,7 +17,7 @@ window.onload = () => {
         y: Math.random() * canvas.height,
         width: 20,
         height: 20,
-        speed: 2 // Speed of projectile (can increase for more challenge)
+        speed: 4 // Increased speed for a faster chase
     };
 
     const projectileImage = new Image();
@@ -36,15 +36,11 @@ window.onload = () => {
         const dy = player.y - projectile.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Normalize the direction and move towards the player
-        if (distance > 1) { // Avoid divide-by-zero errors
+        if (distance > 1) { 
+            // Normalize direction and move towards the player
             projectile.x += (dx / distance) * projectile.speed;
             projectile.y += (dy / distance) * projectile.speed;
         }
-        
-        // Keep projectile within the canvas boundaries
-        projectile.x = Math.max(0, Math.min(canvas.width - projectile.width, projectile.x));
-        projectile.y = Math.max(0, Math.min(canvas.height - projectile.height, projectile.y));
     }
 
     // Check for collisions
