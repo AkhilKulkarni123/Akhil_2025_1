@@ -3,7 +3,13 @@ window.onload = () => {
     const ctx = canvas.getContext("2d");
 
     // Player setup
-    const player = { x: 50, y: canvas.height / 2, width: 40, height: 40 };
+    const player = { 
+        x: 50, 
+        y: canvas.height / 2, 
+        width: 40, 
+        height: 40, 
+        speed: 10 
+    };
 
     // Projectile setup
     const projectile = {
@@ -11,24 +17,32 @@ window.onload = () => {
         y: Math.random() * canvas.height,
         width: 20,
         height: 20,
+        speed: 2 // Speed of projectile (can increase for more challenge)
     };
 
     const projectileImage = new Image();
-    projectileImage.src = "{{site.baseurl}}/images/rpg/projectile.png";
+    projectileImage.src = "{{site.baseurl}}/assets/rpg/projectile.png";
 
     const backgroundImage = new Image();
-    backgroundImage.src = "{{site.baseurl}}/images/rpg/water.png";  // Background image path
+    backgroundImage.src = "{{site.baseurl}}/assets/rpg/water.png"; 
 
     let gameRunning = true;
     let survivalTime = 0;
-    let lastUpdateTime = Date.now();  // Track time for survival counter
+    let lastUpdateTime = Date.now(); 
 
-    // Random projectile movement
-    function moveProjectile() {
-        projectile.x += (Math.random() - 0.5) * 6;
-        projectile.y += (Math.random() - 0.5) * 6;
+    // Function to make the projectile chase the player
+    function chasePlayer() {
+        const dx = player.x - projectile.x;
+        const dy = player.y - projectile.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Keep projectile within bounds
+        // Normalize the direction and move towards the player
+        if (distance > 1) { // Avoid divide-by-zero errors
+            projectile.x += (dx / distance) * projectile.speed;
+            projectile.y += (dy / distance) * projectile.speed;
+        }
+        
+        // Keep projectile within the canvas boundaries
         projectile.x = Math.max(0, Math.min(canvas.width - projectile.width, projectile.x));
         projectile.y = Math.max(0, Math.min(canvas.height - projectile.height, projectile.y));
     }
@@ -42,7 +56,7 @@ window.onload = () => {
             player.y + player.height > projectile.y
         ) {
             gameRunning = false;
-            alert("Game over! You hit the projectile.");
+            alert("Game over! You were caught by the projectile.");
             resetGame();
         }
     }
@@ -53,12 +67,12 @@ window.onload = () => {
         projectile.x = Math.random() * canvas.width;
         projectile.y = Math.random() * canvas.height;
         gameRunning = true;
-        gameLoop();  // Restart the game
+        gameLoop(); 
     }
 
     // Draw the game elements
     function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);  // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
         // Draw background
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -79,7 +93,7 @@ window.onload = () => {
     // Update the survival time
     function updateSurvivalTime() {
         const now = Date.now();
-        if (now - lastUpdateTime >= 1000) {  // If 1 second has passed
+        if (now - lastUpdateTime >= 1000) { 
             survivalTime++;
             lastUpdateTime = now;
         }
@@ -88,7 +102,7 @@ window.onload = () => {
     // Main game loop
     function gameLoop() {
         if (gameRunning) {
-            moveProjectile();
+            chasePlayer(); // Projectile chases player
             checkCollision();
             updateSurvivalTime();
             draw();
@@ -107,4 +121,26 @@ window.onload = () => {
     backgroundImage.onload = () => {
         projectileImage.onload = gameLoop;
     };
+
+    // Handle player movement with keyboard input
+    document.addEventListener("keydown", (event) => {
+        switch (event.key) {
+            case "w":
+                player.y -= player.speed;
+                break;
+            case "s":
+                player.y += player.speed;
+                break;
+            case "a":
+                player.x -= player.speed;
+                break;
+            case "d":
+                player.x += player.speed;
+                break;
+        }
+
+        // Ensure player stays within the canvas boundaries
+        player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+        player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
+    });
 };
