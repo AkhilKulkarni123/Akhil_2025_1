@@ -4,16 +4,21 @@ title: RPG
 permalink: /rpg/
 ---
 
-<canvas id="gameCanvas" width="800" height="600" style="border:1px solid black;"></canvas>
+<canvas id="gameCanvas" width="1200" height="800" style="border:1px solid black;"></canvas>
 
-<!-- Load JavaScript after the canvas is defined -->
 <script>
     window.onload = () => {
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
 
         // Player setup
-        const player = { x: 50, y: canvas.height / 2, width: 40, height: 40 };
+        const player = { 
+            x: 50, 
+            y: canvas.height / 2, 
+            width: 40, 
+            height: 40, 
+            speed: 10 
+        };
 
         // Projectile setup
         const projectile = {
@@ -21,6 +26,7 @@ permalink: /rpg/
             y: Math.random() * canvas.height,
             width: 20,
             height: 20,
+            speed: 5 
         };
 
         const projectileImage = new Image();
@@ -33,14 +39,19 @@ permalink: /rpg/
         let survivalTime = 0;
         let lastUpdateTime = Date.now();
 
-        function moveProjectile() {
-            projectile.x += (Math.random() - 0.5) * 6;
-            projectile.y += (Math.random() - 0.5) * 6;
+        // Function to make the projectile chase the player
+        function chasePlayer() {
+            const dx = player.x - projectile.x;
+            const dy = player.y - projectile.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-            projectile.x = Math.max(0, Math.min(canvas.width - projectile.width, projectile.x));
-            projectile.y = Math.max(0, Math.min(canvas.height - projectile.height, projectile.y));
+            if (distance > 1) {
+                projectile.x += (dx / distance) * projectile.speed;
+                projectile.y += (dy / distance) * projectile.speed;
+            }
         }
 
+        // Check for collisions
         function checkCollision() {
             if (
                 player.x < projectile.x + projectile.width &&
@@ -49,11 +60,12 @@ permalink: /rpg/
                 player.y + player.height > projectile.y
             ) {
                 gameRunning = false;
-                alert("Game over! You hit the projectile.");
+                alert("Game over! You were caught by the projectile.");
                 resetGame();
             }
         }
 
+        // Reset the game
         function resetGame() {
             survivalTime = 0;
             projectile.x = Math.random() * canvas.width;
@@ -62,6 +74,7 @@ permalink: /rpg/
             gameLoop();
         }
 
+        // Draw the game elements
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -77,6 +90,7 @@ permalink: /rpg/
             ctx.fillText("Survival Time: " + Math.floor(survivalTime), 10, 30);
         }
 
+        // Update survival time
         function updateSurvivalTime() {
             const now = Date.now();
             if (now - lastUpdateTime >= 1000) {
@@ -85,9 +99,10 @@ permalink: /rpg/
             }
         }
 
+        // Main game loop
         function gameLoop() {
             if (gameRunning) {
-                moveProjectile();
+                chasePlayer();
                 checkCollision();
                 updateSurvivalTime();
                 draw();
@@ -102,23 +117,25 @@ permalink: /rpg/
             }
         }
 
+        // Start the game when images are loaded
         backgroundImage.onload = () => {
             projectileImage.onload = gameLoop;
         };
 
+        // Handle player movement with keyboard input
         document.addEventListener("keydown", (event) => {
             switch (event.key) {
                 case "w":
-                    player.y -= 10;
+                    player.y -= player.speed;
                     break;
                 case "s":
-                    player.y += 10;
+                    player.y += player.speed;
                     break;
                 case "a":
-                    player.x -= 10;
+                    player.x -= player.speed;
                     break;
                 case "d":
-                    player.x += 10;
+                    player.x += player.speed;
                     break;
             }
 
@@ -127,4 +144,3 @@ permalink: /rpg/
         });
     };
 </script>
-

@@ -17,7 +17,7 @@ window.onload = () => {
         y: Math.random() * canvas.height,
         width: 20,
         height: 20,
-        speed: 4 // Increased speed for a faster chase
+        speed: 2.5 // Adjusted speed for a more balanced challenge
     };
 
     const projectileImage = new Image();
@@ -37,7 +37,7 @@ window.onload = () => {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance > 1) { 
-            // Normalize direction and move towards the player
+            // Normalize direction and move towards the player more smoothly
             projectile.x += (dx / distance) * projectile.speed;
             projectile.y += (dy / distance) * projectile.speed;
         }
