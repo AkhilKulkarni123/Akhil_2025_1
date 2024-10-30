@@ -8,7 +8,7 @@ window.onload = () => {
         y: canvas.height / 2, 
         width: 40, 
         height: 40, 
-        speed: 10 
+        speed: 100 
     };
 
     // Projectile setup
