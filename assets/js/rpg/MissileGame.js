@@ -17,7 +17,7 @@ window.onload = () => {
         y: Math.random() * canvas.height,
         width: 20,
         height: 20,
-        speed: 0.0000001 // Adjusted speed for a more balanced challenge
+        speed: 0.0000000000000000000000001 // Adjusted speed for a more balanced challenge
     };
 
     const projectileImage = new Image();
