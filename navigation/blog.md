@@ -66,15 +66,21 @@ Shay: Changed sprites and worked on overall game functionality
 
 
 
+Images:
+![Change the hitbox and max health for user sprite in game level for Greece](https://github.com/user-attachments/assets/5d5bf6ec-2a9e-4f14-ac8f-abef9fae20c8)
+*Change the hitbox and max health for the user sprite in the Greece level.*
 
-Images: 
-![image](https://github.com/user-attachments/assets/5d5bf6ec-2a9e-4f14-ac8f-abef9fae20c8)
-Change the hitbox and max health for user sprite in game level for Greece
-![image](https://github.com/user-attachments/assets/dcc64927-24bc-43ca-93bc-ccb30265f541)
-Changing the jump height factor to match game difficulty and according uploaded sprites for new end game method
-![image](https://github.com/user-attachments/assets/247bb3da-65d5-4876-8ee2-40ec5874d0a3)
-Change the sprite and their uploaded width/height, along with spawning more sprites for end game method
-![image](https://github.com/user-attachments/assets/c6666ec2-aa70-4072-97b9-dc989b7ba8fb)
-![image](https://github.com/user-attachments/assets/fea48529-d98d-4eba-a9bc-d6b4cb5d484f)
+![Changing the jump height factor to match game difficulty and according uploaded sprites for new end game method](https://github.com/user-attachments/assets/dcc64927-24bc-43ca-93bc-ccb30265f541)
+*Changing the jump height factor to match game difficulty and the uploaded sprites for the new end-game method.*
+
+![Change the sprite and their uploaded width/height, along with spawning more sprites for end game method](https://github.com/user-attachments/assets/247bb3da-65d5-4876-8ee2-40ec5874d0a3)
+*Change the sprite dimensions and spawn more sprites for the end game method.*
+
+![Sprite width/height and spawning more sprites](https://github.com/user-attachments/assets/c6666ec2-aa70-4072-97b9-dc989b7ba8fb)
+*Sprite width/height adjustment and spawning more sprites for better gameplay experience.*
+
+![Additional sprite for end game level](https://github.com/user-attachments/assets/fea48529-d98d-4eba-a9bc-d6b4cb5d484f)
+*Additional sprite for the final level of the game.*
+
 
 
