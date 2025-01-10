@@ -204,7 +204,7 @@ Sample of bullets
 - Introduction to concepts and requirements by the teacher
 - Project-based learning with teacher support, performing Agile/Scrum development in the classroom
 - Coding, frontend, backend, devops, version control and algorithmic thinking
-- Creativity, research, design, data structures, and utilizing ChatGPT
+- Creativity, research, design, data structures, and utilizing ChatGPT for help in rational aid
 - Performing team work, team communication and collaboration, peer reviews/grading
 - Focus on tehnical communications through project presentations and student led teaching
 - Grades are on projects, learnt concepts, and live reviews between student(s) and teacher
