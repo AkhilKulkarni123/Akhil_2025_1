@@ -213,7 +213,7 @@ Explore the Computer Science Pathway at Del Norte High School and invest in your
 2:14
 - Introduction to concepts and requirements by the teacher
 - Project-based learning with teacher support, performing Agile/Scrum development
-- Coding, frontend, backend, devops, version control and algorithmic thinking
+- Coding, frontend, backend, devops, version control and algorithmic thinking for problem solving
 - Creativity, research, design, data structures, and utilizing ChatGPT
 - Performing team work, team communication and collaboration, peer reviews/grading
 - Focus on tehnical communications through project presentations and student led teaching
