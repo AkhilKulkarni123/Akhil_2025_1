@@ -207,7 +207,7 @@ Sample of bullets
 - Creativity, research, design, data structures, and utilizing ChatGPT for help in rational aid
 - Performing team work, team communication and collaboration, peer reviews/grading
 - Focus on tehnical communications through project presentations and student led teaching
-- Grades are on projects, learnt concepts, and live reviews between student(s) and teacher
+- Grades are on projects, learnt concepts, and live reviews between student(s) and teacher in the classroom.
 - This is emphasis ``` Markdown
 Explore the Computer Science Pathway at Del Norte High School and invest in your technical skills. All Del Norte CompSci classes are designed to provide a real-world development experience. Class time includes tech talks (lectures), peer collaboration, communication with teachers, critical thinking while coding, and creativity in projects. Grading is focused on time invested, participation with peers, and engagement in learning.
 2:14
