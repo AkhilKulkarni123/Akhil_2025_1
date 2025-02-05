@@ -4,6 +4,49 @@ title: Blogs
 search_exclude: true
 permalink: /blogs/
 ---
+
+# Skills/Goals Table For Adventure Game
+
+| Skill                                         | Mastered (Y/N) | Rank (1-4) | Ratio | Notes                                                   |
+|-----------------------------------------------|----------------|------------|-------|---------------------------------------------------------|
+| New Level (City) Implemented                 | [Y ]           | 3          | 0.0   | Escape Key Logic                        |
+| Smooth Transtition with window alert                                 | [Y ]           | 3.5        | 0.0   | Level Ended Pop up using escape                               |
+| Changing current constants in the Player.js File              | [Y ]           | 3.5        | 0.0   | Slightly modified the jumping and height canvas ratio in player.js
+| Changed and added more questions in the level quiz, want to add GOOD input if possible  | [Y ]           | 4          | 0.0   | Integrate quiz logic                          |
+| Upload and render sprite logic for city background | [Y ]           | 4          | 0.0   | Already found new city background, will upload today/tomorrow                      |
+| Transition                                    | [ ]            | 2          | 0.0   | [Smooth transition to next level]                      |
+| Game Over                                     | [ ]            | 2          | 0.0   | [Implementations for escape key]                                       |
+| Dollar Sprite                            | [ ]            | 2.5        | 0.0   | [Add green dollar sprite] |
+| Coin Sprite                    | [ ]            | 3          | 0.0   | Add coin sprite for user to collect     |
+| Using greece logic to check if all coins and dollars are collected for enough money, spawn in chest sprite to finsish the city  level (There are already many collision logic methods in the code| [ ]            | 3.5        | 0.0   | Implement logic for Sprite Spawn and Collision/Collection Check |
+| Chest Sprite                  | [ ]            | 3          | 0.0   | Upload Chest sprite |
+| Implement a real time and displayed tally/Counter of number of coins, dollars sprites, and total money collected so far at the top of the screen, already done in my personal RPG Game with timer display in seconds             | [ ]            | 3.5        | 0.0   | Show users real-time progress on top of the display/screen |
+| Add more NPC's to interact with and add on than just a simple message, maybe like another quiz for a chance to earn more money                 | [ ]            | 3          | 0.0   | Increment the Counter accordingly and integrate logic periodically and logically |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Changes to platformer 4x
 
 -Akhil-
