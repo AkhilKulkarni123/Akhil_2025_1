@@ -1,9 +1,8 @@
 import GameEnv from './GameEnv.js';
 import GameLevelWater from './GameLevelWater.js';
 import GameLevelDesert from './GameLevelDesert.js';
+import GameLevelCity from './GameLevelCity.js'; // Import new city level
 import { getStats } from "./StatsManager.js";
-
-
 
 const createStatsUI = () => {
     const statsContainer = document.createElement('div');
@@ -45,12 +44,12 @@ const GameControl = {
     localStorageTimeKey: "localTimes",
     currentPass: 0,
     currentLevelIndex: 0,
-    levelClasses: [],
+    levelClasses: [], // The list of levels, now including GameLevelCity
     path: '',
 
     start: function(path) {
         GameEnv.create();
-        this.levelClasses = [GameLevelDesert, GameLevelWater];
+        this.levelClasses = [GameLevelDesert, GameLevelWater, GameLevelCity]; // Added GameLevelCity
         this.currentLevelIndex = 0;
         this.path = path;
         this.addExitKeyListener();
