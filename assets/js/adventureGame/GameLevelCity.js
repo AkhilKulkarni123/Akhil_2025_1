@@ -16,7 +16,7 @@ class GameLevelCity {
         const image_src_city = path + "/images/gamify/desert.png"; // Placeholder for city image, you can update with actual desert image
         const image_data_city = {
             name: 'desert',
-            greeting: "Welcome to the desert! A vast open space with endless sand!",
+            greeting: "Welcome to the city! A vast open space with endless infrastructure!", 
             src: image_src_city,
             pixels: { height: 580, width: 1038 }
         };
