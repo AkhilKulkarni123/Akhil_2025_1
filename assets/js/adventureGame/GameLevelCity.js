@@ -127,9 +127,25 @@ class GameLevelCity {
             }
         };
 
+        // Function to handle 'E' key for quiz activation
+        const quizHandler = (event) => {
+            if (event.key === 'e' || event.key === 'E') {
+                // Trigger quiz for all NPCs (you can customize this behavior further)
+                const npc = this.objects.find(obj => obj.class === Npc); // Assuming one NPC for simplicity
+                if (npc && npc.data.quiz) {
+                    alert(npc.data.quiz.title);
+                    npc.data.quiz.questions.forEach((question, index) => {
+                        let answer = prompt(question);
+                        console.log(`Question ${index + 1}: ${answer}`);
+                    });
+                }
+            }
+        };
+
         // Listen for keydown events
         document.addEventListener('keydown', moveHandler);
         document.addEventListener('keydown', escapeHandler);
+        document.addEventListener('keydown', quizHandler); // Added 'E' key listener for quiz
     }
 }
 
