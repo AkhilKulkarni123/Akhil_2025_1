@@ -70,12 +70,27 @@ class GameLevelCity {
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
     };
 
+    // Key sprite data
+    const sprite_src_key = path + "/images/gamify/key.png";
+    const sprite_data_key = {
+        src: sprite_src_key,
+        sizeRatio: 83.2,
+        widthRatio: 1.0,
+        heightRatio: 1.0,
+        width: 5952, // 204
+        height: 6000, // 204
+        scaleSize: 10, // 80
+        speedRatio: 0.7,
+        hitbox: { widthPercentage: 0.4, heightPercentage: -0.2 }
+    };
+
     // List of objects definitions for this city level
     this.objects = [
       { class: Background, data: image_data_city },
       { class: Player, data: sprite_data_chillguy },
       { class: Npc, data: sprite_data_tux },
-      { class: Npc, data: sprite_data_octocat }
+      { class: Npc, data: sprite_data_octocat },
+      { class: Npc, data: sprite_data_key } // Adding the key sprite to the objects
     ];
 
     // Collision counter
