@@ -91,16 +91,19 @@ class GameLevelCity {
     this.displayCollisionCount = () => {
       const collisionText = `Collisions: ${this.collisionCount}`;
       const collisionDisplay = document.getElementById("collision-count");
+
       if (!collisionDisplay) {
         const newDisplay = document.createElement("div");
         newDisplay.id = "collision-count";
         newDisplay.style.position = "absolute";
         newDisplay.style.top = "10px";
-        newDisplay.style.left = "10px";
+        newDisplay.style.left = "50%";
+        newDisplay.style.transform = "translateX(-50%)";  // Center the text horizontally
         newDisplay.style.color = "white";
         newDisplay.style.fontSize = "20px";
         document.body.appendChild(newDisplay);
       }
+
       document.getElementById("collision-count").innerText = collisionText;
     };
 
