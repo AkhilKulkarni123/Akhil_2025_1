@@ -1,4 +1,3 @@
-// To build GameLevels, each contains GameObjects from below imports
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import Player from './Player.js';
@@ -12,21 +11,21 @@ class GameLevelCity {
     let width = GameEnv.innerWidth;
     let height = GameEnv.innerHeight;
 
-    // Background data
-    const image_src_desert = path + "/images/gamify/desert.png"; // be sure to include the path
-    const image_data_desert = {
-        name: 'desert',
-        greeting: "Welcome to the desert!  It is hot and dry here, but there are many adventures to be had!",
-        src: image_src_desert,
+    // Background data for City level
+    const image_src_city = path + "/images/gamify/city.png"; // be sure to include the path
+    const image_data_city = {
+        name: 'City',
+        greeting: "Welcome to the city! There's a lot to explore here, and many interesting people to meet!",
+        src: image_src_city,
         pixels: {height: 580, width: 1038}
     };
 
-    // Player data for Chillguy
+    // Player data for Chillguy (replaced with 'Chillguy' from the first level)
     const sprite_src_chillguy = path + "/images/gamify/chillguy.png"; // be sure to include the path
     const CHILLGUY_SCALE_FACTOR = 5;
     const sprite_data_chillguy = {
         id: 'Chill Guy',
-        greeting: "Hi I am Chill Guy, the city adventurer. Ready to explore the urban jungle?",
+        greeting: "Hi I am Chill Guy, the city explorer. Looking for adventures in the urban jungle!",
         src: sprite_src_chillguy,
         SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
         STEP_FACTOR: 1000,
@@ -42,18 +41,18 @@ class GameLevelCity {
         keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
 
-    // NPC data for Tux
+    // NPC data for Tux (replacing the NPCs with the ones from the first level)
     const sprite_src_tux = path + "/images/gamify/tux.png"; // be sure to include the path
     const sprite_data_tux = {
         id: 'Tux',
-        greeting: "Hi I am Tux, the Linux mascot. I am very happy to spend some linux shell time with you!",
+        greeting: "Hi I am Tux, the Linux mascot.  I am very happy to spend some Linux shell time with you!",
         src: sprite_src_tux,
         SCALE_FACTOR: 8,  // Adjust this based on your scaling needs
         ANIMATION_RATE: 50,
         pixels: {height: 256, width: 352},
         INIT_POSITION: { x: (width / 2), y: (height / 2)},
         orientation: {rows: 8, columns: 11 },
-        down: {row: 5, start: 0, columns: 3 },
+        down: {row: 5, start: 0, columns: 3 },  // This is the stationary npc, down is default 
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
         // Linux command quiz
         quiz: { 
@@ -71,13 +70,13 @@ class GameLevelCity {
             "Which command is used to view the contents of a file?\n1. less\n2. more\n3. view\n4. cat" 
           ] 
         }
-    };
+      };
 
-    // NPC data for Octocat
+    // NPC data for Octocat (from the first level)
     const sprite_src_octocat = path + "/images/gamify/octocat.png"; // be sure to include the path
     const sprite_data_octocat = {
         id: 'Octocat',
-        greeting: "Hi I am Octocat! I am the GitHub code code code collaboration mascot",
+        greeting: "Hi I am Octocat! I am the GitHub collaboration mascot!",
         src: sprite_src_octocat,
         SCALE_FACTOR: 10,  // Adjust this based on your scaling needs
         ANIMATION_RATE: 50,
@@ -104,59 +103,13 @@ class GameLevelCity {
         }
     };
 
-    // NPC data for Robot
-    const sprite_src_robot = path + "/images/gamify/robot.png"; // be sure to include the path
-    const sprite_data_robot = {
-        id: 'Robot',
-        greeting: "Hi I am Robot, the Jupyter Notebook mascot. I am very happy to spend some linux shell time with you!",
-        src: sprite_src_robot,
-        SCALE_FACTOR: 10,  // Adjust this based on your scaling needs
-        ANIMATION_RATE: 100,
-        pixels: {height: 316, width: 627},
-        INIT_POSITION: { x: (width * 3 / 4), y: (height * 3 / 4)},
-        orientation: {rows: 3, columns: 6 },
-        down: {row: 1, start: 0, columns: 6 },  // This is the stationary npc, down is default 
-        hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
-        // Linux command quiz
-        quiz: { 
-          title: "Jupyter Notebook Command Quiz",
-          questions: [
-            "Which shortcut is used to run a cell in Jupyter Notebook?\n1. Shift + Enter\n2. Ctrl + Enter\n3. Alt + Enter\n4. Tab + Enter",
-            "Which shortcut adds a new cell above the current cell?\n1. A\n2. B\n3. C\n4. D",
-            "Which shortcut adds a new cell below the current cell?\n1. B\n2. A\n3. C\n4. D",
-            "Which shortcut changes a cell to Markdown format?\n1. M\n2. Y\n3. R\n4. K",
-            "Which shortcut changes a cell to Code format?\n1. Y\n2. M\n3. C\n4. D",
-            "Which shortcut deletes the current cell?\n1. D, D\n2. X\n3. Del\n4. Ctrl + D",
-            "Which shortcut saves the current notebook?\n1. Ctrl + S\n2. Alt + S\n3. Shift + S\n4. Tab + S",
-            "Which shortcut restarts the kernel?\n1. 0, 0\n2. R, R\n3. K, K\n4. Shift + R",
-            "Which shortcut interrupts the kernel?\n1. I, I\n2. Ctrl + C\n3. Shift + I\n4. Alt + I",
-            "Which shortcut is used to switch between command and edit mode?\n1. Esc (command mode) / Enter (edit mode)\n2. Ctrl + E (command mode) / Shift + E (edit mode)\n3. Tab (command mode) / Shift + Tab (edit mode)\n4. Alt + Enter"
-          ] 
-        }
-    };
-
-    // Create objects
-    this.bg = new Background(image_data_city);
-    this.player = new Player(sprite_data_chillguy);
-    this.npc = [
-      new Npc(sprite_data_tux),
-      new Npc(sprite_data_octocat),
-      new Npc(sprite_data_robot)
+    // List of objects definitions for this city level
+    this.objects = [
+      { class: Background, data: image_data_city },
+      { class: Player, data: sprite_data_chillguy },
+      { class: Npc, data: sprite_data_tux },
+      { class: Npc, data: sprite_data_octocat }
     ];
-  }
-
-  // To render all objects
-  render() {
-    this.bg.render();
-    this.player.render();
-    this.npc.forEach(npc => npc.render());
-  }
-
-  // Update the level
-  update() {
-    this.bg.update();
-    this.player.update();
-    this.npc.forEach(npc => npc.update());
   }
 }
 
