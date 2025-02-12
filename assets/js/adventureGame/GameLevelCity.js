@@ -82,6 +82,10 @@ class GameLevelCity {
     this.collisionCount = 0;
     this.collisionMessage = "";
 
+    // Timer setup
+    this.timerStartTime = Date.now();
+    this.timerDuration = 60000; // 60 seconds
+
     // Update the collision counter when player collides with NPC
     this.updateCollision = () => {
       this.collisionCount++;
@@ -117,9 +121,19 @@ class GameLevelCity {
         }
         alert(this.collisionMessage);
         // Logic for transitioning to the next level or displaying the message
-        // For example, call the method to load the next level, etc.
       }
     });
+
+    // Check if the time is up every second
+    setInterval(() => {
+      const elapsedTime = Date.now() - this.timerStartTime;
+      const remainingTime = this.timerDuration - elapsedTime;
+
+      if (remainingTime <= 0) {
+        alert("Time's Up!");
+        // Stop the game or implement other logic after the time's up
+      }
+    }, 1000);
   }
 
   // Method to check collisions (add this where you detect collisions)
@@ -147,4 +161,3 @@ class GameLevelCity {
 }
 
 export default GameLevelCity;
-
