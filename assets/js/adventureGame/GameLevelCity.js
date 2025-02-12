@@ -7,7 +7,6 @@ class GameLevelCity {
     constructor(path) {
         const header = document.querySelector('header');
         const footer = document.querySelector('footer');
-        // Values dependent on GameEnv.create()
         let width = GameEnv.innerWidth;
         let height = GameEnv.innerHeight;
 
@@ -63,37 +62,6 @@ class GameLevelCity {
                 ]
             }
         };
-
-        // NPC data from GameLevelWater (using a water NPC)
-        const sprite_src_water_npc = path + "/images/gamify/water_npc.png"; // Using a water NPC sprite
-        const sprite_data_water_npc = {
-            id: 'Water NPC',
-            greeting: "Hi, I'm Water NPC, ready for aquatic adventures?",
-            src: sprite_src_water_npc,
-            SCALE_FACTOR: 10,
-            ANIMATION_RATE: 50,
-            pixels: { height: 301, width: 801 },
-            INIT_POSITION: { x: (width / 4), y: (height / 4) },
-            orientation: { rows: 1, columns: 4 },
-            down: { row: 0, start: 0, columns: 3 },
-            hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
-            quiz: {
-                title: "Water Quiz",
-                questions: [
-                    "Which ocean is the largest?\n1. Pacific\n2. Atlantic\n3. Indian\n4. Arctic",
-                    "What is the process by which water changes into vapor?\n1. Evaporation\n2. Precipitation\n3. Condensation\n4. Transpiration",
-                    "Which of these is a freshwater lake?\n1. Lake Baikal\n2. Lake Victoria\n3. Lake Tanganyika\n4. Lake Mead"
-                ]
-            }
-        };
-
-        // List of objects definitions for this level
-        this.objects = [
-            { class: Background, data: image_data_city },
-            { class: Player, data: sprite_data_chillguy },
-            { class: Npc, data: sprite_data_desert_npc },
-            { class: Npc, data: sprite_data_water_npc }
-        ];
 
         // Collision counter
         this.collisionCount = 0;
@@ -161,20 +129,45 @@ class GameLevelCity {
 
     displayCollisionCount() {
         // Display collision count on top-left of the screen
-        const collisionDisplay = document.createElement('div');
-        collisionDisplay.id = 'collisionCount';
-        collisionDisplay.style.position = 'absolute';
-        collisionDisplay.style.top = '10px';
-        collisionDisplay.style.left = '10px';
-        collisionDisplay.style.color = 'white';
-        collisionDisplay.style.fontSize = '20px';
-        collisionDisplay.innerHTML = `Collisions: ${this.collisionCount}`;
-        document.body.appendChild(collisionDisplay);
+        let collisionDisplay = document.getElementById('collisionCount');
+        if (!collisionDisplay) {
+            collisionDisplay = document.createElement('div');
+            collisionDisplay.id = 'collisionCount';
+            collisionDisplay.style.position = 'absolute';
+            collisionDisplay.style.top = '10px';
+            collisionDisplay.style.left = '10px';
+            collisionDisplay.style.color = 'white';
+            collisionDisplay.style.fontSize = '20px';
+            document.body.appendChild(collisionDisplay);
+        }
 
         // Update the count in real-time
-        setInterval(() => {
-            collisionDisplay.innerHTML = `Collisions: ${this.collisionCount}`;
-        }, 100);
+        collisionDisplay.innerHTML = `Collisions: ${this.collisionCount}`;
+    }
+
+    // Function to initialize and render the game level
+    initializeLevel() {
+        // Initialize the environment (this should load the player, NPCs, and background)
+        this.objects.forEach(obj => {
+            if (obj.class === Background) {
+                obj.class.render(obj.data);
+            } else if (obj.class === Player) {
+                obj.class.render(obj.data);
+            } else if (obj.class === Npc) {
+                obj.class.render(obj.data);
+            }
+        });
+    }
+
+    // Main update loop for the level
+    update() {
+        this.objects.forEach(obj => {
+            if (obj.class === Player) {
+                obj.class.update(obj.data);
+            } else if (obj.class === Npc) {
+                obj.class.update(obj.data);
+            }
+        });
     }
 }
 
