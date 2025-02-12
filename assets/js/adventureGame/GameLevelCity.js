@@ -1,4 +1,3 @@
-// To build GameLevels, each contains GameObjects from below imports
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import Player from './Player.js';
@@ -12,21 +11,21 @@ class GameLevelCity {
         let width = GameEnv.innerWidth;
         let height = GameEnv.innerHeight;
 
-        // Background data for city (using desert placeholder for now)
-        const image_src_city = path + "/images/gamify/desert.png"; // Placeholder for city image, you can update with actual desert image
-        const image_data_city = {
-            name: 'city',
-            greeting: "Welcome to the city! A vast open space with endless infrastructure!",
-            src: image_src_city,
+        // Background data (city background is the same as desert background)
+        const image_src_desert = path + "/images/gamify/desert.png"; // keep same background
+        const image_data_desert = {
+            name: 'desert',
+            greeting: "Welcome to the city! It's bustling with life.",
+            src: image_src_desert,
             pixels: { height: 580, width: 1038 }
         };
 
-        // Player data for Chillguy (same as previous level)
-        const sprite_src_chillguy = path + "/images/gamify/chillguy.png";
+        // Player data (Chillguy same as Desert level)
+        const sprite_src_chillguy = path + "/images/gamify/chillguy.png"; // Same sprite as Desert
         const CHILLGUY_SCALE_FACTOR = 5;
         const sprite_data_chillguy = {
             id: 'Chill Guy',
-            greeting: "Hi, I am Chill Guy, your guide! Ready to explore?",
+            greeting: "Hi, I am Chill Guy, exploring the city!",
             src: sprite_src_chillguy,
             SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
             STEP_FACTOR: 1000,
@@ -42,12 +41,12 @@ class GameLevelCity {
             keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
         };
 
-        // NPC data from GameLevelDesert (using a desert NPC)
-        const sprite_src_desert_npc = path + "/images/gamify/desert_npc.png"; // Using a desert NPC sprite instead of tux
-        const sprite_data_desert_npc = {
-            id: 'Desert NPC',
-            greeting: "Hi, I'm an explorer! Welcome to the desert!",
-            src: sprite_src_desert_npc,
+        // NPC data (Tux same as Desert level)
+        const sprite_src_tux = path + "/images/gamify/tux.png"; // Same sprite as Desert
+        const sprite_data_tux = {
+            id: 'Tux',
+            greeting: "Hi, I am Tux, the Linux mascot!",
+            src: sprite_src_tux,
             SCALE_FACTOR: 8,
             ANIMATION_RATE: 50,
             pixels: { height: 256, width: 352 },
@@ -55,22 +54,14 @@ class GameLevelCity {
             orientation: { rows: 8, columns: 11 },
             down: { row: 5, start: 0, columns: 3 },
             hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
-            quiz: {
-                title: "Desert Quiz",
-                questions: [
-                    "Which animal is commonly found in the desert?\n1. Camel\n2. Kangaroo\n3. Elephant\n4. Bear",
-                    "Which of the following is a desert plant?\n1. Cactus\n2. Pine Tree\n3. Oak\n4. Maple",
-                    "What is the hottest desert in the world?\n1. Sahara\n2. Gobi\n3. Sonoran\n4. Mojave"
-                ]
-            }
         };
 
-        // NPC data from GameLevelWater (using a water NPC)
-        const sprite_src_water_npc = path + "/images/gamify/water_npc.png"; // Using a water NPC sprite instead of octocat
-        const sprite_data_water_npc = {
-            id: 'Water NPC',
-            greeting: "Hi, I'm Water NPC, ready for aquatic adventures?",
-            src: sprite_src_water_npc,
+        // NPC data (Octocat same as Desert level)
+        const sprite_src_octocat = path + "/images/gamify/octocat.png"; // Same sprite as Desert
+        const sprite_data_octocat = {
+            id: 'Octocat',
+            greeting: "Hi, I am Octocat, the GitHub mascot!",
+            src: sprite_src_octocat,
             SCALE_FACTOR: 10,
             ANIMATION_RATE: 50,
             pixels: { height: 301, width: 801 },
@@ -78,76 +69,77 @@ class GameLevelCity {
             orientation: { rows: 1, columns: 4 },
             down: { row: 0, start: 0, columns: 3 },
             hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
-            quiz: {
-                title: "Water Quiz",
-                questions: [
-                    "Which ocean is the largest?\n1. Pacific\n2. Atlantic\n3. Indian\n4. Arctic",
-                    "What is the process by which water changes into vapor?\n1. Evaporation\n2. Precipitation\n3. Condensation\n4. Transpiration",
-                    "Which of these is a freshwater lake?\n1. Lake Baikal\n2. Lake Victoria\n3. Lake Tanganyika\n4. Lake Mead"
-                ]
-            }
         };
 
-        // List of objects definitions for this level
-        this.objects = [
-            { class: Background, data: image_data_city },
-            { class: Player, data: sprite_data_chillguy },
-            { class: Npc, data: sprite_data_desert_npc }, // Replaced Tux with desert NPC
-            { class: Npc, data: sprite_data_water_npc } // Replaced Octocat with water NPC
-        ];
+        // City specific data (collision counter)
+        this.collisions = 0;
+        this.maxCollisions = 15;
 
-        // Add event listener for movement (WASD keys) and Escape key functionality
-        this.setupKeyListeners();
+        this.objects = [
+            new Background(image_data_desert),  // Same background as desert
+            new Player(sprite_data_chillguy),    // Same player sprite
+            new Npc(sprite_data_tux),           // Same NPC as Desert
+            new Npc(sprite_data_octocat)        // Same NPC as Desert
+        ];
     }
 
-    setupKeyListeners() {
-        const player = this.objects.find(obj => obj.class === Player).data;
-
-        // Function to handle key presses
-        const moveHandler = (event) => {
-            // Handle movement (WASD)
-            if (event.keyCode === player.keypress.up) {
-                player.INIT_POSITION.y -= 10; // Move up
-            } else if (event.keyCode === player.keypress.down) {
-                player.INIT_POSITION.y += 10; // Move down
-            } else if (event.keyCode === player.keypress.left) {
-                player.INIT_POSITION.x -= 10; // Move left
-            } else if (event.keyCode === player.keypress.right) {
-                player.INIT_POSITION.x += 10; // Move right
+    // Update method for collision tracking and game logic
+    update() {
+        GameEnv.gameObjects.forEach((object) => {
+            if (object instanceof Player) {
+                // Handle collision detection with NPCs
+                GameEnv.gameObjects.forEach((npc) => {
+                    if (npc instanceof Npc && this.checkCollision(object, npc)) {
+                        this.collisions++;
+                        if (this.collisions < this.maxCollisions) {
+                            this.showMessage(`Collisions: ${this.collisions} / ${this.maxCollisions}`);
+                        } else {
+                            this.showMessage("You reached 15 collisions! Press ESC to end the level.");
+                        }
+                    }
+                });
             }
+        });
+    }
 
-            // Prevent default behavior for WASD (so it doesn't scroll the page)
-            event.preventDefault();
-        };
+    // Collision detection function
+    checkCollision(player, npc) {
+        const playerBox = player.getBoundingBox();
+        const npcBox = npc.getBoundingBox();
+        return (
+            playerBox.x < npcBox.x + npcBox.width &&
+            playerBox.x + playerBox.width > npcBox.x &&
+            playerBox.y < npcBox.y + npcBox.height &&
+            playerBox.y + playerBox.height > npcBox.y
+        );
+    }
 
-        // Function to handle Escape key for level end
-        const escapeHandler = (event) => {
-            if (event.key === 'Escape') {
-                alert("All levels have ended! Congratulations on completing the game!");
-            }
-        };
+    // Display messages in the UI
+    showMessage(message) {
+        const messageDiv = document.getElementById('message');
+        if (!messageDiv) {
+            const messageElement = document.createElement('div');
+            messageElement.id = 'message';
+            messageElement.style.position = 'fixed';
+            messageElement.style.bottom = '20px';
+            messageElement.style.left = '20px';
+            messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            messageElement.style.color = 'white';
+            messageElement.style.padding = '10px';
+            messageElement.style.borderRadius = '5px';
+            document.body.appendChild(messageElement);
+        }
+        document.getElementById('message').textContent = message;
+    }
 
-        // Function to handle 'E' key for quiz activation
-        const quizHandler = (event) => {
-            if (event.key === 'e' || event.key === 'E') {
-                // Trigger quiz for all NPCs (you can customize this behavior further)
-                const npc = this.objects.find(obj => obj.class === Npc); // Assuming one NPC for simplicity
-                if (npc && npc.data.quiz) {
-                    alert(npc.data.quiz.title);
-                    npc.data.quiz.questions.forEach((question, index) => {
-                        let answer = prompt(question);
-                        console.log(`Question ${index + 1}: ${answer}`);
-                    });
-                }
-            }
-        };
-
-        // Listen for keydown events
-        document.addEventListener('keydown', moveHandler);
-        document.addEventListener('keydown', escapeHandler);
-        document.addEventListener('keydown', quizHandler); // Added 'E' key listener for quiz
+    // Handle the ESC key press for logic
+    handleEscKeyPress() {
+        if (this.collisions < this.maxCollisions) {
+            this.showMessage("You didn't reach 15 collisions. Stop playing.");
+        } else {
+            alert("Level complete! Moving to the next level.");
+        }
     }
 }
 
 export default GameLevelCity;
-
