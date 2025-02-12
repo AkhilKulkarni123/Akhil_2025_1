@@ -12,7 +12,7 @@ class GameLevelCity {
     let height = GameEnv.innerHeight;
 
     // Background data for City level
-    const image_src_city = path + "/images/gamify/city.png"; // be sure to include the path
+    const image_src_city = path + "/images/gamify/map.jpg"; // be sure to include the path
     const image_data_city = {
         name: 'City',
         greeting: "Welcome to the city! There's a lot to explore here, and many interesting people to meet!",
