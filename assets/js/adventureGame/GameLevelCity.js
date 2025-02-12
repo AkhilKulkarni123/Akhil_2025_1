@@ -1,4 +1,3 @@
-// To build GameLevels, each contains GameObjects from below imports
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import Player from './Player.js';
@@ -13,7 +12,7 @@ class GameLevelCity {
         let height = GameEnv.innerHeight;
 
         // Background data for city (using desert placeholder for now)
-        const image_src_city = path + "/images/gamify/desert.png"; // Placeholder for city image, you can update with actual desert image
+        const image_src_city = path + "/images/gamify/desert.png"; // Placeholder for city image, you can update with actual city image
         const image_data_city = {
             name: 'city',
             greeting: "Welcome to the city! A vast open space with endless infrastructure!",
@@ -43,7 +42,7 @@ class GameLevelCity {
         };
 
         // NPC data from GameLevelDesert (using a desert NPC)
-        const sprite_src_desert_npc = path + "/images/gamify/desert_npc.png"; // Using a desert NPC sprite instead of tux
+        const sprite_src_desert_npc = path + "/images/gamify/desert_npc.png"; // Using a desert NPC sprite
         const sprite_data_desert_npc = {
             id: 'Desert NPC',
             greeting: "Hi, I'm an explorer! Welcome to the desert!",
@@ -66,7 +65,7 @@ class GameLevelCity {
         };
 
         // NPC data from GameLevelWater (using a water NPC)
-        const sprite_src_water_npc = path + "/images/gamify/water_npc.png"; // Using a water NPC sprite instead of octocat
+        const sprite_src_water_npc = path + "/images/gamify/water_npc.png"; // Using a water NPC sprite
         const sprite_data_water_npc = {
             id: 'Water NPC',
             greeting: "Hi, I'm Water NPC, ready for aquatic adventures?",
@@ -92,12 +91,16 @@ class GameLevelCity {
         this.objects = [
             { class: Background, data: image_data_city },
             { class: Player, data: sprite_data_chillguy },
-            { class: Npc, data: sprite_data_desert_npc }, // Replaced Tux with desert NPC
-            { class: Npc, data: sprite_data_water_npc } // Replaced Octocat with water NPC
+            { class: Npc, data: sprite_data_desert_npc },
+            { class: Npc, data: sprite_data_water_npc }
         ];
+
+        // Collision counter
+        this.collisionCount = 0;
 
         // Add event listener for movement (WASD keys) and Escape key functionality
         this.setupKeyListeners();
+        this.displayCollisionCount();
     }
 
     setupKeyListeners() {
@@ -123,29 +126,55 @@ class GameLevelCity {
         // Function to handle Escape key for level end
         const escapeHandler = (event) => {
             if (event.key === 'Escape') {
-                alert("All levels have ended! Congratulations on completing the game!");
+                if (this.collisionCount < 15) {
+                    alert("You have not yet reached 15 collisions. Keep going!");
+                } else {
+                    alert("All levels have ended! Congratulations on completing the game!");
+                }
             }
         };
 
-        // Function to handle 'E' key for quiz activation
-        const quizHandler = (event) => {
-            if (event.key === 'e' || event.key === 'E') {
-                // Trigger quiz for all NPCs (you can customize this behavior further)
-                const npc = this.objects.find(obj => obj.class === Npc); // Assuming one NPC for simplicity
-                if (npc && npc.data.quiz) {
-                    alert(npc.data.quiz.title);
-                    npc.data.quiz.questions.forEach((question, index) => {
-                        let answer = prompt(question);
-                        console.log(`Question ${index + 1}: ${answer}`);
-                    });
+        // Detect collisions with NPCs
+        const collisionHandler = () => {
+            this.objects.forEach(obj => {
+                if (obj.class === Npc) {
+                    const npc = obj.data;
+                    if (this.isPlayerNearNpc(player, npc)) {
+                        this.collisionCount++;
+                        this.displayCollisionCount(); // Update collision count in real-time
+                    }
                 }
-            }
+            });
         };
 
         // Listen for keydown events
         document.addEventListener('keydown', moveHandler);
         document.addEventListener('keydown', escapeHandler);
-        document.addEventListener('keydown', quizHandler); // Added 'E' key listener for quiz
+        setInterval(collisionHandler, 100); // Check for collisions regularly
+    }
+
+    isPlayerNearNpc(player, npc) {
+        // Check if player is within a certain distance from the NPC
+        return Math.abs(player.INIT_POSITION.x - npc.INIT_POSITION.x) < 100 &&
+            Math.abs(player.INIT_POSITION.y - npc.INIT_POSITION.y) < 100;
+    }
+
+    displayCollisionCount() {
+        // Display collision count on top-left of the screen
+        const collisionDisplay = document.createElement('div');
+        collisionDisplay.id = 'collisionCount';
+        collisionDisplay.style.position = 'absolute';
+        collisionDisplay.style.top = '10px';
+        collisionDisplay.style.left = '10px';
+        collisionDisplay.style.color = 'white';
+        collisionDisplay.style.fontSize = '20px';
+        collisionDisplay.innerHTML = `Collisions: ${this.collisionCount}`;
+        document.body.appendChild(collisionDisplay);
+
+        // Update the count in real-time
+        setInterval(() => {
+            collisionDisplay.innerHTML = `Collisions: ${this.collisionCount}`;
+        }, 100);
     }
 }
 
