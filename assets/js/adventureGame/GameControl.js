@@ -1,7 +1,7 @@
-vimport GameEnv from './GameEnv.js';
+
+import GameEnv from './GameEnv.js';
 import GameLevelWater from './GameLevelWater.js';
 import GameLevelDesert from './GameLevelDesert.js';
-import GameLevelCity from './GameLevelCity.js';
 import { getStats } from "./StatsManager.js";
 
 
@@ -36,8 +36,7 @@ const createStatsUI = () => {
  * 
  * @type {Object}
  * @property {Player} turtle - The player object.
- * @property {Player} fish
- * @property {Player} lumberjack
+ * @property {Player} fish 
  * @property {function} start - Initialize game assets and start the game loop.
  * @property {function} gameLoop - The game loop.
  * @property {function} resize - Resize the canvas and player object when the window is resized.
@@ -52,7 +51,7 @@ const GameControl = {
 
     start: function(path) {
         GameEnv.create();
-        this.levelClasses = [GameLevelDesert, GameLevelWater, GameLevelCity];
+        this.levelClasses = [GameLevelDesert, GameLevelWater];
         this.currentLevelIndex = 0;
         this.path = path;
         this.addExitKeyListener();
