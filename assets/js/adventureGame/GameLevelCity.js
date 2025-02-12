@@ -1,3 +1,4 @@
+// To build GameLevels, each contains GameObjects from below imports
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import Player from './Player.js';
@@ -7,11 +8,12 @@ class GameLevelCity {
     constructor(path) {
         const header = document.querySelector('header');
         const footer = document.querySelector('footer');
+        // Values dependent on GameEnv.create()
         let width = GameEnv.innerWidth;
         let height = GameEnv.innerHeight;
 
         // Background data for city (using desert placeholder for now)
-        const image_src_city = path + "/images/gamify/desert.png"; // Placeholder for city image, you can update with actual city image
+        const image_src_city = path + "/images/gamify/desert.png"; // Placeholder for city image, you can update with actual desert image
         const image_data_city = {
             name: 'city',
             greeting: "Welcome to the city! A vast open space with endless infrastructure!",
@@ -41,7 +43,7 @@ class GameLevelCity {
         };
 
         // NPC data from GameLevelDesert (using a desert NPC)
-        const sprite_src_desert_npc = path + "/images/gamify/desert_npc.png"; // Using a desert NPC sprite
+        const sprite_src_desert_npc = path + "/images/gamify/desert_npc.png"; // Using a desert NPC sprite instead of tux
         const sprite_data_desert_npc = {
             id: 'Desert NPC',
             greeting: "Hi, I'm an explorer! Welcome to the desert!",
@@ -63,12 +65,39 @@ class GameLevelCity {
             }
         };
 
-        // Collision counter
-        this.collisionCount = 0;
+        // NPC data from GameLevelWater (using a water NPC)
+        const sprite_src_water_npc = path + "/images/gamify/water_npc.png"; // Using a water NPC sprite instead of octocat
+        const sprite_data_water_npc = {
+            id: 'Water NPC',
+            greeting: "Hi, I'm Water NPC, ready for aquatic adventures?",
+            src: sprite_src_water_npc,
+            SCALE_FACTOR: 10,
+            ANIMATION_RATE: 50,
+            pixels: { height: 301, width: 801 },
+            INIT_POSITION: { x: (width / 4), y: (height / 4) },
+            orientation: { rows: 1, columns: 4 },
+            down: { row: 0, start: 0, columns: 3 },
+            hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
+            quiz: {
+                title: "Water Quiz",
+                questions: [
+                    "Which ocean is the largest?\n1. Pacific\n2. Atlantic\n3. Indian\n4. Arctic",
+                    "What is the process by which water changes into vapor?\n1. Evaporation\n2. Precipitation\n3. Condensation\n4. Transpiration",
+                    "Which of these is a freshwater lake?\n1. Lake Baikal\n2. Lake Victoria\n3. Lake Tanganyika\n4. Lake Mead"
+                ]
+            }
+        };
+
+        // List of objects definitions for this level
+        this.objects = [
+            { class: Background, data: image_data_city },
+            { class: Player, data: sprite_data_chillguy },
+            { class: Npc, data: sprite_data_desert_npc }, // Replaced Tux with desert NPC
+            { class: Npc, data: sprite_data_water_npc } // Replaced Octocat with water NPC
+        ];
 
         // Add event listener for movement (WASD keys) and Escape key functionality
         this.setupKeyListeners();
-        this.displayCollisionCount();
     }
 
     setupKeyListeners() {
@@ -94,81 +123,31 @@ class GameLevelCity {
         // Function to handle Escape key for level end
         const escapeHandler = (event) => {
             if (event.key === 'Escape') {
-                if (this.collisionCount < 15) {
-                    alert("You have not yet reached 15 collisions. Keep going!");
-                } else {
-                    alert("All levels have ended! Congratulations on completing the game!");
-                }
+                alert("All levels have ended! Congratulations on completing the game!");
             }
         };
 
-        // Detect collisions with NPCs
-        const collisionHandler = () => {
-            this.objects.forEach(obj => {
-                if (obj.class === Npc) {
-                    const npc = obj.data;
-                    if (this.isPlayerNearNpc(player, npc)) {
-                        this.collisionCount++;
-                        this.displayCollisionCount(); // Update collision count in real-time
-                    }
+        // Function to handle 'E' key for quiz activation
+        const quizHandler = (event) => {
+            if (event.key === 'e' || event.key === 'E') {
+                // Trigger quiz for all NPCs (you can customize this behavior further)
+                const npc = this.objects.find(obj => obj.class === Npc); // Assuming one NPC for simplicity
+                if (npc && npc.data.quiz) {
+                    alert(npc.data.quiz.title);
+                    npc.data.quiz.questions.forEach((question, index) => {
+                        let answer = prompt(question);
+                        console.log(`Question ${index + 1}: ${answer}`);
+                    });
                 }
-            });
+            }
         };
 
         // Listen for keydown events
         document.addEventListener('keydown', moveHandler);
         document.addEventListener('keydown', escapeHandler);
-        setInterval(collisionHandler, 100); // Check for collisions regularly
-    }
-
-    isPlayerNearNpc(player, npc) {
-        // Check if player is within a certain distance from the NPC
-        return Math.abs(player.INIT_POSITION.x - npc.INIT_POSITION.x) < 100 &&
-            Math.abs(player.INIT_POSITION.y - npc.INIT_POSITION.y) < 100;
-    }
-
-    displayCollisionCount() {
-        // Display collision count on top-left of the screen
-        let collisionDisplay = document.getElementById('collisionCount');
-        if (!collisionDisplay) {
-            collisionDisplay = document.createElement('div');
-            collisionDisplay.id = 'collisionCount';
-            collisionDisplay.style.position = 'absolute';
-            collisionDisplay.style.top = '10px';
-            collisionDisplay.style.left = '10px';
-            collisionDisplay.style.color = 'white';
-            collisionDisplay.style.fontSize = '20px';
-            document.body.appendChild(collisionDisplay);
-        }
-
-        // Update the count in real-time
-        collisionDisplay.innerHTML = `Collisions: ${this.collisionCount}`;
-    }
-
-    // Function to initialize and render the game level
-    initializeLevel() {
-        // Initialize the environment (this should load the player, NPCs, and background)
-        this.objects.forEach(obj => {
-            if (obj.class === Background) {
-                obj.class.render(obj.data);
-            } else if (obj.class === Player) {
-                obj.class.render(obj.data);
-            } else if (obj.class === Npc) {
-                obj.class.render(obj.data);
-            }
-        });
-    }
-
-    // Main update loop for the level
-    update() {
-        this.objects.forEach(obj => {
-            if (obj.class === Player) {
-                obj.class.update(obj.data);
-            } else if (obj.class === Npc) {
-                obj.class.update(obj.data);
-            }
-        });
+        document.addEventListener('keydown', quizHandler); // Added 'E' key listener for quiz
     }
 }
 
 export default GameLevelCity;
+
