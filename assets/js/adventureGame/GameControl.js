@@ -1,9 +1,8 @@
 import GameEnv from './GameEnv.js';
 import GameLevelWater from './GameLevelWater.js';
 import GameLevelDesert from './GameLevelDesert.js';
+import GameLevelCity from './GameLevelCity.js'; // Import the new city level
 import { getStats } from "./StatsManager.js";
-
-
 
 const createStatsUI = () => {
     const statsContainer = document.createElement('div');
@@ -23,25 +22,8 @@ const createStatsUI = () => {
     document.body.appendChild(statsContainer);
 };
 
-/**
- * The GameControl object manages the game.
- * 
- * This code uses the JavaScript "object literal pattern" which is nice for centralizing control logic.
- * 
- * The object literal pattern is a simple way to create singleton objects in JavaScript.
- * It allows for easy grouping of related functions and properties, making the code more organized and readable.
- * In the context of GameControl, this pattern helps centralize the game's control logic, 
- * making it easier to manage game states, handle events, and maintain the overall flow of the game.
- * 
- * @type {Object}
- * @property {Player} turtle - The player object.
- * @property {Player} fish 
- * @property {function} start - Initialize game assets and start the game loop.
- * @property {function} gameLoop - The game loop.
- * @property {function} resize - Resize the canvas and player object when the window is resized.
- */
 const GameControl = {
-    intervalID: null, // Variable to hold the timer interval reference
+    intervalID: null,
     localStorageTimeKey: "localTimes",
     currentPass: 0,
     currentLevelIndex: 0,
@@ -50,13 +32,13 @@ const GameControl = {
 
     start: function(path) {
         GameEnv.create();
-        this.levelClasses = [GameLevelDesert, GameLevelWater];
+        this.levelClasses = [GameLevelDesert, GameLevelWater, GameLevelCity]; // Include City level here
         this.currentLevelIndex = 0;
         this.path = path;
         this.addExitKeyListener();
         this.loadLevel();
     },
-    
+
     loadLevel: function() {
         if (this.currentLevelIndex >= this.levelClasses.length) {
             this.stopTimer();
@@ -69,10 +51,10 @@ const GameControl = {
         const levelInstance = new LevelClass(this.path);
         this.loadLevelObjects(levelInstance);
     },
-    
+
     loadLevelObjects: function(gameInstance) {
         this.initStatsUI();
-        // Instantiate the game objects
+        // Instantiate the game objects for the current level
         for (let object of gameInstance.objects) {
             if (!object.data) object.data = {};
             new object.class(object.data);
@@ -83,12 +65,12 @@ const GameControl = {
     },
 
     gameLoop: function() {
-        // Base case: leave the game loop 
+        // Base case: leave the game loop if the level ends
         if (!GameEnv.continueLevel) {
             this.handleLevelEnd();
             return;
         }
-        // Nominal case: update the game objects 
+        // Nominal case: update the game objects
         GameEnv.clear();
         for (let object of GameEnv.gameObjects) {
             object.update();  // Update the game objects
@@ -108,7 +90,7 @@ const GameControl = {
     },
 
     handleLevelEnd: function() {
-        // More levels to play 
+        // More levels to play
         if (this.currentLevelIndex < this.levelClasses.length - 1) {
             alert("Level ended.");
         } else { // All levels completed
@@ -123,7 +105,7 @@ const GameControl = {
         // Go back to the loadLevel function
         this.loadLevel();
     },
-    
+
     resize: function() {
         // Resize the game environment
         GameEnv.resize();
@@ -145,7 +127,7 @@ const GameControl = {
      * Updates and displays the game timer.
      * @function updateTimer
      * @memberof GameControl
-     */ 
+     */
     saveTime(time, score) {
         if (time == 0) return;
         const userID = GameEnv.userID
@@ -262,7 +244,6 @@ const GameControl = {
         `;
         document.body.appendChild(statsContainer);
     },
-
 };
 
 // Detect window resize events and call the resize function.
