@@ -67,20 +67,10 @@ class GameLevelWater {
             "What is the parent class of all Java classes?\n1. Object\n2. BaseClass\n3. Root\n4. Core",
             "How do you correctly create a new object in Java?\n1. Object obj = Object();\n2. Object obj = new Object();\n3. Object obj = new();\n4. new Object obj;",
             "Which Java keyword is used to handle exceptions?\n1. throw\n2. try\n3. error\n4. exception",
-            "Which Java collection allows key-value pairs?\n1. ArrayList\n2. HashMap\n3. HashSet\n4. LinkedList",
-            "Which method is used to find the length of a string in Java?\n1. size()\n2. length()\n3. getLength()\n4. count()",
-            "What does the 'static' keyword mean in Java?\n1. It defines a variable that can only be used in one instance.\n2. It defines a class that cannot be inherited.\n3. It defines a variable or method that belongs to the class rather than any object instance.\n4. It defines a method that does not return anything.",
-            "What will the following code output? `System.out.println(10 / 3);`\n1. 3\n2. 3.33\n3. 3.0\n4. Error",
-            "Which keyword is used to inherit a class in Java?\n1. implements\n2. extends\n3. inherit\n4. super",
-            "Which of the following is the correct way to create a new thread in Java?\n1. new Thread().start();\n2. Thread.run();\n3. Thread.new();\n4. start(new Thread());",
-            "Which of these is used to check whether an object is an instance of a class in Java?\n1. instanceof\n2. isinstance\n3. classof\n4. typeof",
-            "What does the 'super' keyword refer to in Java?\n1. The parent class of the current object\n2. The current object\n3. The class itself\n4. A method in the current class",
-            "What is the purpose of the 'this' keyword in Java?\n1. It refers to the current instance of the class.\n2. It is used to access static variables.\n3. It refers to a parent class instance.\n4. It helps in defining constants.",
-            "Which method in Java is used to start the execution of a thread?\n1. start()\n2. run()\n3. execute()\n4. begin()",
-            "In Java, what is the result of comparing two strings with == operator?\n1. It compares the content of the strings.\n2. It compares the references (memory locations) of the strings.\n3. It will throw an exception.\n4. It checks the length of the strings."
-                  ] 
-                }
-              };
+            "Which Java collection allows key-value pairs?\n1. ArrayList\n2. HashMap\n3. HashSet\n4. LinkedList"
+          ] 
+        }
+      };
 
 
     // List of objects definitions for this level
