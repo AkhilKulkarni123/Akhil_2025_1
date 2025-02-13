@@ -144,3 +144,128 @@ Images:
 | Add more NPC's to interact with and add on than just a simple message, maybe like another quiz for a chance to earn more money                 | [ ]            | 3          | 0.0   | Increment the Counter accordingly and integrate logic periodically and logically |
 
 
+New Level (City) Implemented
+
+Mastered: Yes
+Rank: 3
+Notes: Escape Key Logic
+Smooth Transition with window alert
+
+Mastered: Yes
+Rank: 3.5
+Notes: Level Ended Pop up using escape
+Changing current constants in the Player.js File
+
+Mastered: Yes
+Rank: 3.5
+Notes: Slightly modified the jumping and height canvas ratio in player.js
+Changed and added more questions in the level quiz
+
+Mastered: Yes
+Rank: 4
+Notes: Integrate quiz logic, want to add GOOD input if possible
+Upload and render sprite logic for city background
+
+Mastered: Yes
+Rank: 4
+Notes: Already found new city background, will upload today/tomorrow
+Transition
+
+Mastered: No
+Rank: 2
+Notes: Smooth transition to next level
+Game Over
+
+Mastered: No
+Rank: 2
+Notes: Implementations for escape key
+Dollar Sprite
+
+Mastered: No
+Rank: 2.5
+Notes: Add green dollar sprite
+Coin Sprite
+
+Mastered: Yes
+Rank: 3
+Notes: Add coin sprite for user to collect
+Using Greece logic to check if all coins and dollars are collected for enough money, spawn in chest sprite to finish the city level
+
+Mastered: No
+Rank: 3.5
+Notes: Implement logic for Sprite Spawn and Collision/Collection Check (many collision logic methods already in the code)
+Chest Sprite
+
+Mastered: No
+Rank: 3
+Notes: Upload Chest sprite
+Implement a real-time and displayed tally/Counter of number of coins, dollars sprites, and total money collected so far at the top of the screen
+
+Mastered: No
+Rank: 3.5
+Notes: Already done in personal RPG Game with timer display in seconds
+Add more NPC's to interact with and add more than just a simple message, maybe like another quiz for a chance to earn more money
+
+Mastered: No
+Rank: 3
+Notes: Increment the Counter accordingly and integrate logic periodically and logically
+Let me know if you need any changes!
+
+
+You said:
+Now delete the mastered part of everything 
+ChatGPT said:
+Here’s the updated checklist with the "Mastered" part removed:
+
+New Level (City) Implemented
+
+Rank: 3
+Notes: Escape Key Logic
+Smooth Transition with window alert
+
+Rank: 3.5
+Notes: Level Ended Pop up using escape
+Changing current constants in the Player.js File
+
+Rank: 3.5
+Notes: Slightly modified the jumping and height canvas ratio in player.js
+Changed and added more questions in the level quiz
+
+Rank: 4
+Notes: Integrate quiz logic, want to add GOOD input if possible
+Upload and render sprite logic for city background
+
+Rank: 4
+Notes: Already found new city background, will upload today/tomorrow
+Transition
+
+Rank: 2
+Notes: Smooth transition to next level
+Game Over
+
+Rank: 2
+Notes: Implementations for escape key
+Dollar Sprite
+
+Rank: 2.5
+Notes: Add green dollar sprite
+Coin Sprite
+
+Rank: 3
+Notes: Add coin sprite for user to collect
+Using Greece logic to check if all coins and dollars are collected for enough money, spawn in chest sprite to finish the city level
+
+Rank: 3.5
+Notes: Implement logic for Sprite Spawn and Collision/Collection Check (many collision logic methods already in the code)
+Chest Sprite
+
+Rank: 3
+Notes: Upload Chest sprite
+Implement a real-time and displayed tally/Counter of number of coins, dollars sprites, and total money collected so far at the top of the screen
+
+Rank: 3.5
+Notes: Already done in personal RPG Game with timer display in seconds
+Add more NPC's to interact with and add more than just a simple message, maybe like another quiz for a chance to earn more money
+
+Rank: 3
+Notes: Increment the Counter accordingly and integrate logic periodically and logically
