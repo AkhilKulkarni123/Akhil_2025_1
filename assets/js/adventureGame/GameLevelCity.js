@@ -114,18 +114,16 @@ class GameLevelCity {
     // Listen for the "ESC" key press to move to the next level
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        if (this.collisionCount >= 2) {
+        if (this.collisionCount >= 5) {
           // All levels completed, continue to the next level
           this.collisionMessage = "All levels completed!";
           alert(this.collisionMessage);
-          handleLevelEnd() = True;
 
           // Logic to end the level or move to the next level
         } else {
           // Job not done yet, don't immediately end the level
           this.collisionMessage = "Job not done yet!";
           alert(this.collisionMessage);
-          handleLevelEnd() = False;
           // Do not end the level here, just show the message
         }
       }
