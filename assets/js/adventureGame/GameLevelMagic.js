@@ -9,16 +9,16 @@ class GameLevelMagic {
         let height = GameEnv.innerHeight;
 
         // Use the same desert background image as in GameLevelDesert
-        const image_src_desert = path + "/images/gamify/desert.png"; // Same image as in desert level
+        const image_src_desert = path + "/images/gamify/castle.png"; // Same image as in castle level
         const image_data_desert = {
             name: 'desert',
             greeting: "Welcome to the desert! It is hot and dry here, but there are many adventures to be had!",
             src: image_src_desert,
-            pixels: { height: 580, width: 1038 }
+            pixels: { height: 720, width: 1280 }
         };
 
         // Use the same Chill Guy sprite as in GameLevelDesert
-        const sprite_src_chillguy = path + "/images/gamify/chillguy.png"; // Same sprite as in desert level
+        const sprite_src_chillguy = path + "/images/gamify/main.png"; // Same sprite as in castle level
         const CHILLGUY_SCALE_FACTOR = 5;
         const sprite_data_chillguy = {
             id: 'Chill Guy',
@@ -28,7 +28,7 @@ class GameLevelMagic {
             STEP_FACTOR: 1000,
             ANIMATION_RATE: 50,
             INIT_POSITION: { x: 0, y: height - (height / CHILLGUY_SCALE_FACTOR) },
-            pixels: { height: 384, width: 512 },
+            pixels: { height: 280, width: 256 },
             orientation: { rows: 3, columns: 4 },
             down: { row: 0, start: 0, columns: 3 },
             left: { row: 2, start: 0, columns: 3 },
