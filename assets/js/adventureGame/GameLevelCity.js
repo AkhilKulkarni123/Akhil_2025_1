@@ -70,12 +70,32 @@ class GameLevelCity {
       hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
     };
 
-    // List of objects definitions for this city level
+    // **Coin sprite** - Here we add the coin path and positions
+    const coin_src = path + "/images/gamify/key.png"; // Path to your coin sprite
+    const coin_positions = [
+      { x: 100, y: 300 },  // First coin position
+      { x: 400, y: 200 },  // Second coin position
+      { x: 700, y: 350 },  // Third coin position
+      { x: 900, y: 100 },  // Fourth coin position
+      { x: 1200, y: 250 }  // Fifth coin position
+    ];
+
+    // Add coins to the objects array
     this.objects = [
       { class: Background, data: image_data_city },
       { class: Player, data: sprite_data_chillguy },
       { class: Npc, data: sprite_data_tux },
-      { class: Npc, data: sprite_data_octocat }
+      { class: Npc, data: sprite_data_octocat },
+      // **Spawning the coins** - Mapping each coin position to a coin object
+      ...coin_positions.map(position => ({
+        class: "Image", // This is a placeholder for rendering the image (you can adjust how you render it)
+        data: {
+          src: coin_src,
+          position: position,  // Place each coin at its x, y position
+          pixels: { width: 5952, height: 6000 }, // Coin size: assuming it's 32x32px
+          hitbox: { widthPercentage: 1, heightPercentage: 1 } // Full size hitbox for coins
+        }
+      }))
     ];
 
     // Collision counter
