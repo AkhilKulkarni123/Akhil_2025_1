@@ -52,7 +52,7 @@ class GameLevelCity {
       INIT_POSITION: { x: (width / 2), y: (height / 2) },
       orientation: { rows: 8, columns: 11 },
       down: { row: 5, start: 0, columns: 3 },
-      hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
+      hitbox: { widthPercentage: 0.4, heightPercentage: 0.8 },
     };
 
     // NPC data for Octocat
@@ -67,7 +67,7 @@ class GameLevelCity {
       INIT_POSITION: { x: (width / 4), y: (height / 4) },
       orientation: { rows: 1, columns: 4 },
       down: { row: 0, start: 0, columns: 3 },
-      hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
+      hitbox: { widthPercentage: 0.3, heightPercentage: 0.3 },
     };
 
     // List of objects definitions for this city level
