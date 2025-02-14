@@ -57,14 +57,14 @@ class GameLevelCity {
     
     // Preload missile image
     this.missileImg = new Image();
-    this.missileImg.src = path + "/images/rpg/projectile.png";
+    this.missileImg.src = path + "/images/projectile.png";
     this.missileImg.onload = () => {
       this.imageLoaded = true;
     };
     
     // Spawn missiles at intervals
     setInterval(() => {
-      this.spawnMissile();
+      this.spawnMissile(path);
     }, 2000); // Spawn a new missile every 2 seconds
 
     // Check for missile collisions
@@ -97,6 +97,10 @@ class GameLevelCity {
       frameHeight: 134,
       currentFrame: 0
     };
+        missile.width = 15;
+    missile.height = 15;
+    missile.frameWidth = 67;
+    missile.frameHeight = 268;
     this.missiles.push(missile);
   }
 
