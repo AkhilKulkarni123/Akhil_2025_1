@@ -48,6 +48,12 @@ class GameLevelCity {
     this.missiles = [];
     this.timerStartTime = Date.now();
     this.timerDuration = 60000; // 60 seconds
+
+    this.canvas = document.createElement('canvas');
+    this.ctx = this.canvas.getContext('2d');
+    document.body.appendChild(this.canvas);
+    this.canvas.width = width;
+    this.canvas.height = height;
     
     // Spawn missiles at intervals
     setInterval(() => {
@@ -56,7 +62,7 @@ class GameLevelCity {
 
     // Check for missile collisions
     this.missileInterval = setInterval(() => {
-      this.checkMissileCollisions();
+      this.updateMissiles();
     }, 50);
 
     // Time check
@@ -67,31 +73,37 @@ class GameLevelCity {
         clearInterval(this.missileInterval);
       }
     }, 1000);
+    
+    requestAnimationFrame(() => this.render());
   }
 
   spawnMissile(path) {
     const missileImg = new Image();
-    missileImg.src = path + "/images/projectile.png";
+    missileImg.src = path + "/images/rpg/projectile.png";
     const missile = {
       x: 0,
       y: Math.random() * GameEnv.innerHeight,
-      width: 536,
-      height: 268,
+      width: 134,
+      height: 134,
       speed: 5,
       img: missileImg,
-      frame: 0,
-      totalFrames: 8
+      frameX: 0,
+      frameY: 0,
+      frameWidth: 134,
+      frameHeight: 134,
+      totalFrames: 8,
+      currentFrame: 0
     };
     this.missiles.push(missile);
   }
 
-  checkMissileCollisions() {
+  updateMissiles() {
     const player = this.objects.find(obj => obj.class === Player).instance;
     if (!player) return;
     
     this.missiles.forEach(missile => {
       missile.x += missile.speed;
-      missile.frame = (missile.frame + 1) % missile.totalFrames;
+      missile.currentFrame = (missile.currentFrame + 1) % missile.totalFrames;
       if (this.isColliding(player, missile)) {
         alert("Job Not Done! Try Again.");
         location.reload(); // Restart level
@@ -113,6 +125,20 @@ class GameLevelCity {
       playerBounds.bottom < missileBounds.top ||
       playerBounds.top > missileBounds.bottom
     );
+  }
+
+  render() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.missiles.forEach(missile => {
+      this.ctx.drawImage(
+        missile.img,
+        missile.currentFrame * missile.frameWidth, 0, // Crop frame from spritesheet
+        missile.frameWidth, missile.frameHeight,
+        missile.x, missile.y, // Position on canvas
+        missile.width, missile.height
+      );
+    });
+    requestAnimationFrame(() => this.render());
   }
 }
 
