@@ -55,9 +55,16 @@ class GameLevelCity {
     this.canvas.width = width;
     this.canvas.height = height;
     
+    // Preload missile image
+    this.missileImg = new Image();
+    this.missileImg.src = path + "/images/rpg/projectile.png";
+    this.missileImg.onload = () => {
+      this.imageLoaded = true;
+    };
+    
     // Spawn missiles at intervals
     setInterval(() => {
-      this.spawnMissile(path);
+      this.spawnMissile();
     }, 2000); // Spawn a new missile every 2 seconds
 
     // Check for missile collisions
@@ -77,21 +84,17 @@ class GameLevelCity {
     requestAnimationFrame(() => this.render());
   }
 
-  spawnMissile(path) {
-    const missileImg = new Image();
-    missileImg.src = path + "/images/rpg/projectile.png";
+  spawnMissile() {
     const missile = {
       x: 0,
       y: Math.random() * GameEnv.innerHeight,
       width: 134,
       height: 134,
       speed: 5,
-      img: missileImg,
       frameX: 0,
-      frameY: 0,
+      totalFrames: 8,
       frameWidth: 134,
       frameHeight: 134,
-      totalFrames: 8,
       currentFrame: 0
     };
     this.missiles.push(missile);
@@ -129,15 +132,17 @@ class GameLevelCity {
 
   render() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.missiles.forEach(missile => {
-      this.ctx.drawImage(
-        missile.img,
-        missile.currentFrame * missile.frameWidth, 0, // Crop frame from spritesheet
-        missile.frameWidth, missile.frameHeight,
-        missile.x, missile.y, // Position on canvas
-        missile.width, missile.height
-      );
-    });
+    if (this.imageLoaded) {
+      this.missiles.forEach(missile => {
+        this.ctx.drawImage(
+          this.missileImg,
+          missile.currentFrame * missile.frameWidth, 0, // Crop frame from spritesheet
+          missile.frameWidth, missile.frameHeight,
+          missile.x, missile.y, // Position on canvas
+          missile.width, missile.height
+        );
+      });
+    }
     requestAnimationFrame(() => this.render());
   }
 }
