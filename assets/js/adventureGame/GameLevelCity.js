@@ -71,7 +71,7 @@ class GameLevelCity {
 
   spawnMissile(path) {
     const missileImg = new Image();
-    missileImg.src = path + "/images/projectile.png";
+    missileImg.src = path + "/images/rpg/projectile.png";
     const missile = {
       x: 0,
       y: Math.random() * GameEnv.innerHeight,
