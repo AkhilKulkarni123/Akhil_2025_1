@@ -1,7 +1,6 @@
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import Player from './Player.js';
-import Npc from './Npc.js';
 
 class GameLevelCity {
   constructor(path) {
@@ -14,22 +13,22 @@ class GameLevelCity {
     const image_src_city = path + "/images/gamify/map.jpg";
     const image_data_city = {
       name: 'City',
-      greeting: "Welcome to the city! There's a lot to explore here, and many interesting people to meet!",
+      greeting: "Welcome to the city! Dodge the incoming missiles!",
       src: image_src_city,
       pixels: { height: 580, width: 1038 }
     };
 
-    // Player data for Chillguy
+    // Player data
     const sprite_src_chillguy = path + "/images/gamify/chillguy.png";
     const CHILLGUY_SCALE_FACTOR = 5;
     const sprite_data_chillguy = {
       id: 'Chill Guy',
-      greeting: "Hi I am Chill Guy, the city explorer. Looking for adventures in the urban jungle!",
+      greeting: "Stay sharp and dodge the missiles!",
       src: sprite_src_chillguy,
       SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
       STEP_FACTOR: 1000,
       ANIMATION_RATE: 50,
-      INIT_POSITION: { x: 0, y: height - (height / CHILLGUY_SCALE_FACTOR) },
+      INIT_POSITION: { x: 50, y: height - (height / CHILLGUY_SCALE_FACTOR) },
       pixels: { height: 384, width: 512 },
       orientation: { rows: 3, columns: 4 },
       down: { row: 0, start: 0, columns: 3 },
@@ -40,130 +39,78 @@ class GameLevelCity {
       keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
 
-    // NPC data for Tux
-    const sprite_src_tux = path + "/images/gamify/tux.png";
-    const sprite_data_tux = {
-      id: 'Tux',
-      greeting: "Hi I am Tux, the Linux mascot.  I am very happy to spend some Linux shell time with you!",
-      src: sprite_src_tux,
-      SCALE_FACTOR: 8,
-      ANIMATION_RATE: 50,
-      pixels: { height: 256, width: 352 },
-      INIT_POSITION: { x: (width / 2), y: (height / 2) },
-      orientation: { rows: 8, columns: 11 },
-      down: { row: 5, start: 0, columns: 3 },
-      hitbox: { widthPercentage: 0.4, heightPercentage: 0.8 },
-    };
-
-    // NPC data for Octocat
-    const sprite_src_octocat = path + "/images/gamify/octocat.png";
-    const sprite_data_octocat = {
-      id: 'Octocat',
-      greeting: "Hi I am Octocat! I am the GitHub collaboration mascot!",
-      src: sprite_src_octocat,
-      SCALE_FACTOR: 10,
-      ANIMATION_RATE: 50,
-      pixels: { height: 301, width: 801 },
-      INIT_POSITION: { x: (width / 4), y: (height / 4) },
-      orientation: { rows: 1, columns: 4 },
-      down: { row: 0, start: 0, columns: 3 },
-      hitbox: { widthPercentage: 0.3, heightPercentage: 0.3 },
-    };
-
-    // List of objects definitions for this city level
+    // List of objects for this level
     this.objects = [
       { class: Background, data: image_data_city },
-      { class: Player, data: sprite_data_chillguy },
-      { class: Npc, data: sprite_data_tux },
-      { class: Npc, data: sprite_data_octocat }
+      { class: Player, data: sprite_data_chillguy }
     ];
 
-    // Collision counter
-    this.collisionCount = 0;
-    this.collisionMessage = "";
-
-    // Timer setup
+    this.missiles = [];
     this.timerStartTime = Date.now();
     this.timerDuration = 60000; // 60 seconds
+    
+    // Spawn missiles at intervals
+    setInterval(() => {
+      this.spawnMissile(path);
+    }, 2000); // Spawn a new missile every 2 seconds
 
-    // Update the collision counter when player collides with NPC
-    this.updateCollision = () => {
-      this.collisionCount++;
-    };
+    // Check for missile collisions
+    this.missileInterval = setInterval(() => {
+      this.checkMissileCollisions();
+    }, 50);
 
-    // Display the tally on the screen
-    this.displayCollisionCount = () => {
-      const collisionText = `Collisions: ${this.collisionCount}`;
-      const collisionDisplay = document.getElementById("collision-count");
-
-      if (!collisionDisplay) {
-        const newDisplay = document.createElement("div");
-        newDisplay.id = "collision-count";
-        newDisplay.style.position = "absolute";
-        newDisplay.style.top = "10px";
-        newDisplay.style.left = "50%";
-        newDisplay.style.transform = "translateX(-50%)";  // Center the text horizontally
-        newDisplay.style.color = "white";
-        newDisplay.style.fontSize = "20px";
-        document.body.appendChild(newDisplay);
-      }
-
-      document.getElementById("collision-count").innerText = collisionText;
-    };
-
-    // Listen for the "ESC" key press to move to the next level
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        if (this.collisionCount >= 5) {
-          // All levels completed, continue to the next level
-          this.collisionMessage = "All levels completed!";
-          alert(this.collisionMessage);
-
-          // Logic to end the level or move to the next level
-        } else {
-          // Job not done yet, don't immediately end the level
-          this.collisionMessage = "Job not done yet!";
-          alert(this.collisionMessage);
-          // Do not end the level here, just show the message
-        }
-      }
-    });
-
-    // Check if the time is up every second
+    // Time check
     setInterval(() => {
       const elapsedTime = Date.now() - this.timerStartTime;
-      const remainingTime = this.timerDuration - elapsedTime;
-
-      if (remainingTime <= 0) {
-        alert("Time's Up!");
-        // Stop the game or implement other logic after the time's up
+      if (elapsedTime >= this.timerDuration) {
+        alert("Time's Up! You Win!");
+        clearInterval(this.missileInterval);
       }
     }, 1000);
   }
 
-  // Method to check collisions (add this where you detect collisions)
-  checkCollisions(player, npcs) {
-    npcs.forEach((npc) => {
-      if (this.isColliding(player, npc)) {
-        this.updateCollision();
-        this.displayCollisionCount();
+  spawnMissile(path) {
+    const missileImg = new Image();
+    missileImg.src = path + "/images/projectile.png";
+    const missile = {
+      x: 0,
+      y: Math.random() * GameEnv.innerHeight,
+      width: 50,
+      height: 20,
+      speed: 5,
+      img: missileImg
+    };
+    this.missiles.push(missile);
+  }
+
+  checkMissileCollisions() {
+    const player = this.objects.find(obj => obj.class === Player).instance;
+    if (!player) return;
+    
+    this.missiles.forEach(missile => {
+      missile.x += missile.speed;
+      if (this.isColliding(player, missile)) {
+        alert("Job Not Done! Try Again.");
+        location.reload(); // Restart level
       }
     });
   }
 
-  // Collision detection logic (for example, simple AABB)
-  isColliding(player, npc) {
+  isColliding(player, missile) {
     const playerBounds = player.getBounds();
-    const npcBounds = npc.getBounds();
-    
+    const missileBounds = {
+      left: missile.x,
+      right: missile.x + missile.width,
+      top: missile.y,
+      bottom: missile.y + missile.height
+    };
     return !(
-      playerBounds.right < npcBounds.left ||
-      playerBounds.left > npcBounds.right ||
-      playerBounds.bottom < npcBounds.top ||
-      playerBounds.top > npcBounds.bottom
+      playerBounds.right < missileBounds.left ||
+      playerBounds.left > missileBounds.right ||
+      playerBounds.bottom < missileBounds.top ||
+      playerBounds.top > missileBounds.bottom
     );
   }
 }
 
 export default GameLevelCity;
-
