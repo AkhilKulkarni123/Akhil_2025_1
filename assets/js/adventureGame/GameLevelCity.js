@@ -57,7 +57,7 @@ class GameLevelCity {
     
     // Preload missile image
     this.missileImg = new Image();
-    this.missileImg.src = path + "/images/projectile.png";
+    this.missileImg.src = path + "/images/rpg/projectile.png";
     this.missileImg.onload = () => {
       this.imageLoaded = true;
     };
