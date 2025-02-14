@@ -160,7 +160,7 @@ class GameLevelCity {
       playerBounds.right < npcBounds.left ||
       playerBounds.left > npcBounds.right ||
       playerBounds.bottom < npcBounds.top ||
-      playerBounds.top > npcBounds.bottom
+      playerBounds.top > npcBounds.bottom //Collision
     );
   }
 }
