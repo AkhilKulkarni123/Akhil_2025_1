@@ -71,14 +71,16 @@ class GameLevelCity {
 
   spawnMissile(path) {
     const missileImg = new Image();
-    missileImg.src = path + "/images/rpg/projectile.png";
+    missileImg.src = path + "/images/projectile.png";
     const missile = {
       x: 0,
       y: Math.random() * GameEnv.innerHeight,
-      width: 50,
-      height: 20,
+      width: 536,
+      height: 268,
       speed: 5,
-      img: missileImg
+      img: missileImg,
+      frame: 0,
+      totalFrames: 8
     };
     this.missiles.push(missile);
   }
@@ -89,6 +91,7 @@ class GameLevelCity {
     
     this.missiles.forEach(missile => {
       missile.x += missile.speed;
+      missile.frame = (missile.frame + 1) % missile.totalFrames;
       if (this.isColliding(player, missile)) {
         alert("Job Not Done! Try Again.");
         location.reload(); // Restart level
