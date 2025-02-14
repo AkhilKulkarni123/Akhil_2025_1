@@ -19,24 +19,24 @@ class GameLevelCity {
       pixels: { height: 580, width: 1038 }
     };
 
-    // Player data for Chillguy
-    const sprite_src_chillguy = path + "/images/gamify/chillguy.png";
-    const CHILLGUY_SCALE_FACTOR = 5;
-    const sprite_data_chillguy = {
-      id: 'Chill Guy',
-      greeting: "Hi I am Chill Guy, the city explorer. Looking for adventures in the urban jungle!",
-      src: sprite_src_chillguy,
-      SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
+    // Player data for Stock Guy (New Sprite)
+    const sprite_src_stockguy = path + "/images/gamify/walking_sprite_sheet.png";
+    const STOCKGUY_SCALE_FACTOR = 4;
+    const sprite_data_stockguy = {
+      id: 'Stock Guy',
+      greeting: "Hi I am Stock Guy, ready for business and adventure!",
+      src: sprite_src_stockguy,
+      SCALE_FACTOR: STOCKGUY_SCALE_FACTOR,
       STEP_FACTOR: 1000,
       ANIMATION_RATE: 50,
-      INIT_POSITION: { x: 0, y: height - (height / CHILLGUY_SCALE_FACTOR) },
-      pixels: { height: 384, width: 512 },
-      orientation: { rows: 3, columns: 4 },
+      INIT_POSITION: { x: 0, y: height - (height / STOCKGUY_SCALE_FACTOR) },
+      pixels: { height: 768, width: 576 }, // Adjusted for the 3x4 sprite sheet
+      orientation: { rows: 4, columns: 3 },
       down: { row: 0, start: 0, columns: 3 },
-      left: { row: 2, start: 0, columns: 3 },
-      right: { row: 1, start: 0, columns: 3 },
+      left: { row: 1, start: 0, columns: 3 },
+      right: { row: 2, start: 0, columns: 3 },
       up: { row: 3, start: 0, columns: 3 },
-      hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
+      hitbox: { widthPercentage: 0.5, heightPercentage: 0.25 }, // Adjusted for proportions
       keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
 
@@ -73,7 +73,7 @@ class GameLevelCity {
     // List of objects definitions for this city level
     this.objects = [
       { class: Background, data: image_data_city },
-      { class: Player, data: sprite_data_chillguy },
+      { class: Player, data: sprite_data_stockguy }, // Replaced with new player sprite
       { class: Npc, data: sprite_data_tux },
       { class: Npc, data: sprite_data_octocat }
     ];
@@ -166,4 +166,3 @@ class GameLevelCity {
 }
 
 export default GameLevelCity;
-
