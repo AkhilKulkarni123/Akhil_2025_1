@@ -1,5 +1,5 @@
 import GameEnv from './GameEnv.js';
-import Background from './Background.js';
+import Background from './Background.js';      
 import Player from './Player.js';
 import Npc from './Npc.js';
 
@@ -44,7 +44,7 @@ class GameLevelCity {
     const sprite_src_tux = path + "/images/gamify/tux.png";
     const sprite_data_tux = {
       id: 'Tux',
-      greeting: "Hi I am Tux, the Linux mascot.  I am very happy to spend some Linux shell time with you!",
+      greeting: "Hi I am Tux, the Linux mascot. I am very happy to spend some Linux shell time with you!",
       src: sprite_src_tux,
       SCALE_FACTOR: 8,
       ANIMATION_RATE: 50,
@@ -166,4 +166,3 @@ class GameLevelCity {
 }
 
 export default GameLevelCity;
-
