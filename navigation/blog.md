@@ -5,6 +5,25 @@ search_exclude: true
 permalink: /blogs/
 ---
 
+
+# 2/3/2025
+
+I added the adventure from the updated portfolio repository, updating the nagvigation, assests/js folder, and adding the game file to the 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Skills/Goals Table For Adventure Game
 
 | Skill                                         | Mastered (Y/N) | Rank (1-4) | Ratio | Notes                                                   |
