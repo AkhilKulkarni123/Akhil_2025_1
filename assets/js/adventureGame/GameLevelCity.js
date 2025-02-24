@@ -40,128 +40,119 @@ class GameLevelCity {
       keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
 
-    // NPC data for Tux
-    const sprite_src_tux = path + "/images/gamify/tux.png";
-    const sprite_data_tux = {
-      id: 'Tux',
-      greeting: "Hi I am Tux, the Linux mascot.  I am very happy to spend some Linux shell time with you!",
-      src: sprite_src_tux,
-      SCALE_FACTOR: 8,
-      ANIMATION_RATE: 50,
-      pixels: { height: 256, width: 352 },
-      INIT_POSITION: { x: (width / 2), y: (height / 2) },
-      orientation: { rows: 8, columns: 11 },
-      down: { row: 5, start: 0, columns: 3 },
-      hitbox: { widthPercentage: 0.4, heightPercentage: 0.8 },
-    };
-
-    // NPC data for Octocat
-    const sprite_src_octocat = path + "/images/gamify/octocat.png";
-    const sprite_data_octocat = {
-      id: 'Octocat',
-      greeting: "Hi I am Octocat! I am the GitHub collaboration mascot!",
-      src: sprite_src_octocat,
-      SCALE_FACTOR: 10,
-      ANIMATION_RATE: 50,
-      pixels: { height: 301, width: 801 },
-      INIT_POSITION: { x: (width / 4), y: (height / 4) },
-      orientation: { rows: 1, columns: 4 },
-      down: { row: 0, start: 0, columns: 3 },
-      hitbox: { widthPercentage: 0.3, heightPercentage: 0.3 },
-    };
-
     // List of objects definitions for this city level
     this.objects = [
       { class: Background, data: image_data_city },
-      { class: Player, data: sprite_data_stockguy }, // Replaced with new player sprite
-      { class: Npc, data: sprite_data_tux },
-      { class: Npc, data: sprite_data_octocat }
+      { class: Player, data: sprite_data_stockguy } // Replaced with new player sprite
     ];
 
-    // Collision counter
-    this.collisionCount = 0;
-    this.collisionMessage = "";
-
-    // Timer setup
+    // Timer and collision detection
     this.timerStartTime = Date.now();
     this.timerDuration = 60000; // 60 seconds
+    this.isProjectileActive = true;
 
-    // Update the collision counter when player collides with NPC
-    this.updateCollision = () => {
-      this.collisionCount++;
+    // Timer display for the level
+    const timerDisplay = document.createElement("div");
+    timerDisplay.id = "timer-display";
+    timerDisplay.style.position = "absolute";
+    timerDisplay.style.top = "10px";
+    timerDisplay.style.left = "10px";
+    timerDisplay.style.color = "white";
+    timerDisplay.style.fontSize = "20px";
+    document.body.appendChild(timerDisplay);
+
+    // Add a projectile that chases the player
+    this.projectile = {
+      sprite: new Image(),
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: 30,
+      speed: 2
+    };
+    this.projectile.sprite.src = path + "/images/rpg/projectile.png"; // Assuming a projectile image exists
+
+    // Update the timer and check for collision
+    const updateTimer = () => {
+      const elapsedTime = Date.now() - this.timerStartTime;
+      const remainingTime = Math.max(0, this.timerDuration - elapsedTime);
+      timerDisplay.innerText = `Time: ${Math.floor(remainingTime / 1000)}s`;
+
+      if (remainingTime <= 0) {
+        alert("Time's Up! You failed the level.");
+        this.resetLevel();
+      }
     };
 
-    // Display the tally on the screen
-    this.displayCollisionCount = () => {
-      const collisionText = `Collisions: ${this.collisionCount}`;
-      const collisionDisplay = document.getElementById("collision-count");
+    // Move the projectile towards the player
+    const moveProjectile = () => {
+      if (!this.isProjectileActive) return;
 
-      if (!collisionDisplay) {
-        const newDisplay = document.createElement("div");
-        newDisplay.id = "collision-count";
-        newDisplay.style.position = "absolute";
-        newDisplay.style.top = "10px";
-        newDisplay.style.left = "50%";
-        newDisplay.style.transform = "translateX(-50%)";  // Center the text horizontally
-        newDisplay.style.color = "white";
-        newDisplay.style.fontSize = "20px";
-        document.body.appendChild(newDisplay);
+      const player = GameEnv.gameObjects.find(obj => obj.id === 'Stock Guy');
+      if (!player) return;
+
+      // Calculate direction towards player
+      const dx = player.x - this.projectile.x;
+      const dy = player.y - this.projectile.y;
+      const angle = Math.atan2(dy, dx);
+      this.projectile.x += Math.cos(angle) * this.projectile.speed;
+      this.projectile.y += Math.sin(angle) * this.projectile.speed;
+
+      // Check for collision
+      if (this.isColliding(player, this.projectile)) {
+        alert("You were hit by the projectile! Restarting level...");
+        this.resetLevel();
       }
+    };
 
-      document.getElementById("collision-count").innerText = collisionText;
+    // Collision detection (for the player and projectile)
+    this.isColliding = (player, projectile) => {
+      const playerBounds = player.getBounds();
+      const projectileBounds = {
+        left: projectile.x,
+        right: projectile.x + projectile.size,
+        top: projectile.y,
+        bottom: projectile.y + projectile.size
+      };
+      return !(playerBounds.right < projectileBounds.left || playerBounds.left > projectileBounds.right || playerBounds.bottom < projectileBounds.top || playerBounds.top > projectileBounds.bottom);
+    };
+
+    // Reset the level if the player collides with the projectile
+    this.resetLevel = () => {
+      GameEnv.gameObjects = [];
+      this.timerStartTime = Date.now(); // Reset timer
+      this.objects = [
+        { class: Background, data: image_data_city },
+        { class: Player, data: sprite_data_stockguy } // Reinitialize player sprite
+      ];
+      this.loadLevel(); // Reload the level
     };
 
     // Listen for the "ESC" key press to move to the next level
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        if (this.collisionCount >= 5) {
-          // All levels completed, continue to the next level
-          this.collisionMessage = "All levels completed!";
-          alert(this.collisionMessage);
-
-          // Logic to end the level or move to the next level
+        const elapsedTime = Date.now() - this.timerStartTime;
+        if (elapsedTime >= this.timerDuration) {
+          // Player survived 60 seconds, move to the next level
+          alert("Level completed! Moving to the next level.");
+          GameControl.currentLevelIndex++; // Move to the next level
+          GameControl.loadLevel(); // Load the next level
         } else {
-          // Job not done yet, don't immediately end the level
-          this.collisionMessage = "Job not done yet!";
-          alert(this.collisionMessage);
-          // Do not end the level here, just show the message
+          alert("You need to survive for 60 seconds to proceed!");
         }
       }
     });
 
-    // Check if the time is up every second
-    setInterval(() => {
-      const elapsedTime = Date.now() - this.timerStartTime;
-      const remainingTime = this.timerDuration - elapsedTime;
-
-      if (remainingTime <= 0) {
-        alert("Time's Up!");
-        // Stop the game or implement other logic after the time's up
-      }
-    }, 1000);
+    // Start the timer and projectile movement
+    setInterval(updateTimer, 1000);
+    setInterval(moveProjectile, 1000 / 60); // 60 FPS update for projectile movement
   }
 
-  // Method to check collisions (add this where you detect collisions)
-  checkCollisions(player, npcs) {
-    npcs.forEach((npc) => {
-      if (this.isColliding(player, npc)) {
-        this.updateCollision();
-        this.displayCollisionCount();
-      }
-    });
-  }
-
-  // Collision detection logic (for example, simple AABB)
-  isColliding(player, npc) {
-    const playerBounds = player.getBounds();
-    const npcBounds = npc.getBounds();
-    
-    return !(
-      playerBounds.right < npcBounds.left ||
-      playerBounds.left > npcBounds.right ||
-      playerBounds.bottom < npcBounds.top ||
-      playerBounds.top > npcBounds.bottom //Collision
-    );
+  // Method to load level objects (same as previous)
+  loadLevel() {
+    for (let object of this.objects) {
+      if (!object.data) object.data = {};
+      new object.class(object.data);
+    }
   }
 }
 
