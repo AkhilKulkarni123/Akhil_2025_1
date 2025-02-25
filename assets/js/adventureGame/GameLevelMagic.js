@@ -5,6 +5,8 @@ import Npc from './Npc.js';
 
 class GameLevelMagic {
     constructor(path) {
+        const header = document.querySelector('header');
+        const footer = document.querySelector('footer');
         let width = GameEnv.innerWidth;
         let height = GameEnv.innerHeight;
 
