@@ -38,6 +38,83 @@ class GameLevelMagic {
             keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
         };
 
+        // Add a projectile sprite
+        const sprite_src_projectile = path + "/images/rpg/projectile.png"; // Placeholder image path
+        const sprite_data_projectile = {
+            id: 'Projectile',
+            src: sprite_src_projectile,
+            SCALE_FACTOR: 5,
+            ANIMATION_RATE: 50,
+            pixels: { height: 50, width: 50 },
+            INIT_POSITION: { x: width / 2, y: height / 2 }, // Starts in the center
+            hitbox: { widthPercentage: 0.5, heightPercentage: 0.5 },
+            direction: { x: 0, y: 0 }, // To be set for chasing the player
+            speed: 2
+        };
+
+        // Timer and state for game logic
+        let timer = 30;
+        let gameStarted = false;
+        let levelCompleted = false;
+
+        // This function will be called each frame to update game logic
+        const updateGame = (player, projectile, deltaTime) => {
+            if (gameStarted && !levelCompleted) {
+                // Move projectile towards player
+                let dx = player.position.x - projectile.position.x;
+                let dy = player.position.y - projectile.position.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                projectile.direction.x = dx / distance;
+                projectile.direction.y = dy / distance;
+
+                projectile.position.x += projectile.direction.x * projectile.speed;
+                projectile.position.y += projectile.direction.y * projectile.speed;
+
+                // Check for collision between player and projectile
+                let hitboxPlayer = player.getHitbox();
+                let hitboxProjectile = projectile.getHitbox();
+
+                if (hitboxPlayer.collidesWith(hitboxProjectile)) {
+                    alert("You were hit! Restarting the level...");
+                    restartLevel();
+                }
+            }
+
+            if (timer <= 0 && !levelCompleted) {
+                // If 30 seconds pass, check ESC key press to end level
+                if (gameStarted) {
+                    alert("Time's up! Press ESC to end the level.");
+                }
+            }
+
+            // Decrease timer each second
+            if (gameStarted) {
+                timer -= deltaTime / 1000;
+            }
+        };
+
+        const restartLevel = () => {
+            // Reset game state, restart level logic
+            gameStarted = false;
+            timer = 30;
+            levelCompleted = false;
+        };
+
+        // Handle ESC key press
+        const handleKeyPress = (event) => {
+            if (event.keyCode === 27) { // ESC key
+                if (timer <= 0 && !levelCompleted) {
+                    alert("All levels completed!");
+                    levelCompleted = true;
+                } else if (!gameStarted) {
+                    alert("You haven't survived yet!");
+                } else {
+                    alert("Game paused. Press ESC to end the level.");
+                    gameStarted = false;
+                }
+            }
+        };
+
         // Use the same Tux NPC sprite as in GameLevelDesert
         const sprite_src_tux = path + "/images/gamify/tux.png"; // Same sprite as in desert level
         const sprite_data_tux = {
@@ -68,42 +145,19 @@ class GameLevelMagic {
             }
         };
 
-        // Use the same Octocat NPC sprite as in GameLevelDesert
-        const sprite_src_octocat = path + "/images/gamify/octocat.png"; // Same sprite as in desert level
-        const sprite_data_octocat = {
-            id: 'Octocat',
-            greeting: "Hi I am Octocat! I am the GitHub code code code collaboration mascot",
-            src: sprite_src_octocat,
-            SCALE_FACTOR: 10,  // Same scale factor as in desert level
-            ANIMATION_RATE: 50,
-            pixels: { height: 301, width: 801 },
-            INIT_POSITION: { x: (width / 4), y: (height / 4) },
-            orientation: { rows: 1, columns: 4 },
-            down: { row: 0, start: 0, columns: 3 },  // Stationary NPC, default is down
-            hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
-            quiz: {
-                title: "GitHub Command Quiz",
-                questions: [
-                    "Which command is used to clone a repository?\n1. git clone\n2. git fork\n3. git copy\n4. git download",
-                    "Which command is used to add changes to the staging area?\n1. git add\n2. git stage\n3. git commit\n4. git push",
-                    "Which command is used to commit changes?\n1. git commit\n2. git add\n3. git save\n4. git push",
-                    "Which command is used to push changes to a remote repository?\n1. git push\n2. git upload\n3. git send\n4. git commit",
-                    "Which command is used to pull changes from a remote repository?\n1. git pull\n2. git fetch\n3. git receive\n4. git update",
-                    "Which command is used to check the status of the working directory and staging area?\n1. git status\n2. git check\n3. git info\n4. git log",
-                    "Which command is used to create a new branch?\n1. git branch\n2. git create-branch\n3. git new-branch\n4. git checkout",
-                    "Which command is used to switch to a different branch?\n1. git checkout\n2. git switch\n3. git change-branch\n4. git branch",
-                    "Which command is used to merge branches?\n1. git merge\n2. git combine\n3. git join\n4. git integrate",
-                    "Which command is used to view the commit history?\n1. git log\n2. git history\n3. git commits\n4. git show"
-                ]
-            }
-        };
-
         this.objects = [
             { class: Background, data: image_data_desert }, // Use desert background
             { class: Player, data: sprite_data_chillguy },  // Use Chill Guy sprite
             { class: Npc, data: sprite_data_tux },          // Use Tux sprite
-            { class: Npc, data: sprite_data_octocat }       // Use Octocat sprite
+            { class: Npc, data: sprite_data_octocat },      // Use Octocat sprite
+            { class: Npc, data: sprite_data_projectile }    // Add projectile
         ];
+
+        // Event listener for key press
+        document.addEventListener("keydown", handleKeyPress);
+
+        // Start game logic
+        gameStarted = true;
     }
 }
 
