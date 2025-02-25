@@ -28,7 +28,7 @@ class GameLevelMagic {
             STEP_FACTOR: 1000,
             ANIMATION_RATE: 50,
             INIT_POSITION: { x: 50, y: height - (height / CHILLGUY_SCALE_FACTOR) },
-            pixels: { height: 280, width: 256 },
+            pixels: { height: 280, width: 256 },  // <-- Ensure pixels are here
             orientation: { rows: 3, columns: 4 },
             down: { row: 0, start: 0, columns: 3 },
             left: { row: 2, start: 0, columns: 3 },
@@ -44,7 +44,8 @@ class GameLevelMagic {
             greeting: "I am the enemy turtle. Beware!",
             src: sprite_src_turtle,
             SCALE_FACTOR: 10,
-            INIT_POSITION: { x: 150, y: height - (height / CHILLGUY_SCALE_FACTOR) }
+            INIT_POSITION: { x: 150, y: height - (height / CHILLGUY_SCALE_FACTOR) },
+            pixels: { width: 100, height: 100 }  // <-- Add valid pixel data here
         };
 
         this.objects = [
