@@ -36,7 +36,7 @@ class GameLevelMagic {
             keypress: { up: 87, left: 65, down: 83, right: 68 }
         };
 
-        const sprite_src_turtle = path + "/images/gamify/turtle.png";
+        const sprite_src_turtle = path + "/images/rpg/turtle.png";
         const sprite_data_turtle = {
             id: 'Turtle',
             greeting: "I am the enemy turtle. Beware!",
