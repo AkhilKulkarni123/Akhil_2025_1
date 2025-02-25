@@ -19,12 +19,12 @@ class GameLevelMagic {
         };
 
         const sprite_src_chillguy = path + "/images/gamify/main.png";
-        const CHILLGUY_SCALE_FACTOR = 5;
+        const MAIN_SCALE_FACTOR = 5;
         const sprite_data_chillguy = {
             id: 'Chill Guy',
             greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdom and adventure!",
             src: sprite_src_chillguy,
-            SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
+            SCALE_FACTOR: MAIN_SCALE_FACTOR,
             STEP_FACTOR: 1000,
             ANIMATION_RATE: 50,
             INIT_POSITION: { x: 50, y: height - (height / CHILLGUY_SCALE_FACTOR) },
