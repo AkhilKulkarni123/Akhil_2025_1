@@ -68,36 +68,6 @@ class GameLevelMagic {
             }
         };
 
-        // Use the same Octocat NPC sprite as in GameLevelDesert
-        const sprite_src_octocat = path + "/images/gamify/octocat.png"; // Same sprite as in desert level
-        const sprite_data_octocat = {
-            id: 'Octocat',
-            greeting: "Hi I am Octocat! I am the GitHub code code code collaboration mascot",
-            src: sprite_src_octocat,
-            SCALE_FACTOR: 10,  // Same scale factor as in desert level
-            ANIMATION_RATE: 50,
-            pixels: { height: 301, width: 801 },
-            INIT_POSITION: { x: (width / 4), y: (height / 4) },
-            orientation: { rows: 1, columns: 4 },
-            down: { row: 0, start: 0, columns: 3 },  // Stationary NPC, default is down
-            hitbox: { widthPercentage: 0.1, heightPercentage: 0.1 },
-            quiz: {
-                title: "GitHub Command Quiz",
-                questions: [
-                    "Which command is used to clone a repository?\n1. git clone\n2. git fork\n3. git copy\n4. git download",
-                    "Which command is used to add changes to the staging area?\n1. git add\n2. git stage\n3. git commit\n4. git push",
-                    "Which command is used to commit changes?\n1. git commit\n2. git add\n3. git save\n4. git push",
-                    "Which command is used to push changes to a remote repository?\n1. git push\n2. git upload\n3. git send\n4. git commit",
-                    "Which command is used to pull changes from a remote repository?\n1. git pull\n2. git fetch\n3. git receive\n4. git update",
-                    "Which command is used to check the status of the working directory and staging area?\n1. git status\n2. git check\n3. git info\n4. git log",
-                    "Which command is used to create a new branch?\n1. git branch\n2. git create-branch\n3. git new-branch\n4. git checkout",
-                    "Which command is used to switch to a different branch?\n1. git checkout\n2. git switch\n3. git change-branch\n4. git branch",
-                    "Which command is used to merge branches?\n1. git merge\n2. git combine\n3. git join\n4. git integrate",
-                    "Which command is used to view the commit history?\n1. git log\n2. git history\n3. git commits\n4. git show"
-                ]
-            }
-        };
-
         // Turtle sprite to chase the player
         const TURTLE_SCALE_FACTOR = 10;
         const sprite_src_turtle = path + "/images/rpg/turtle.png";
@@ -116,13 +86,85 @@ class GameLevelMagic {
             up: { row: 3, start: 0, columns: 3 },
         };
 
+        // Timer logic
+        let timeLeft = 30;
+        let gameOver = false;
+        let turtleChasing = false;
+        let timerInterval;
+        let turtleSpeed = 1; // Speed at which turtle moves towards the user
+
+        // Function to move the turtle towards the player
+        function moveTurtleToPlayer(turtle, player) {
+            let dx = player.x - turtle.x;
+            let dy = player.y - turtle.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance > 0) {
+                turtle.x += (dx / distance) * turtleSpeed;
+                turtle.y += (dy / distance) * turtleSpeed;
+            }
+        }
+
+        // Start the timer countdown
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0 && !gameOver) {
+                    timeLeft--;
+                } else if (timeLeft <= 0 && !gameOver) {
+                    clearInterval(timerInterval);
+                    gameOver = true;
+                    alert("Game Over! Time's up!");
+                    // Restart level logic can be added here
+                }
+            }, 1000);
+        }
+
+        // Check if turtle hits the player
+        function checkCollision(turtle, player) {
+            if (Math.abs(turtle.x - player.x) < 50 && Math.abs(turtle.y - player.y) < 50) {
+                gameOver = true;
+                alert("You were hit by the turtle! Restarting level.");
+                // Restart level logic here
+            }
+        }
+
+        // Handle 'Esc' key press
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                if (timeLeft <= 0) {
+                    alert("Game Over! All levels completed.");
+                    // End game and show game over logic
+                } else if (gameOver) {
+                    return; // Game already over, do nothing
+                } else {
+                    clearInterval(timerInterval);
+                    alert("Game paused. You have not fully survived the game yet!");
+                    // Pause the game but don't end the level
+                }
+            }
+        });
+
+        // Initialize objects and start the game
         this.objects = [
-            { class: Background, data: image_data_desert }, // Use desert background
-            { class: Player, data: sprite_data_chillguy },  // Use Chill Guy sprite
-            { class: Npc, data: sprite_data_tux },          // Use Tux sprite
-            { class: Npc, data: sprite_data_octocat },       // Use Octocat sprite
-            { class: Npc, data: sprite_data_turtle }         // Add the turtle sprite
+            { class: Background, data: image_data_desert },
+            { class: Player, data: sprite_data_chillguy },
+            { class: Npc, data: sprite_data_tux },
+            { class: Npc, data: sprite_data_octocat },
+            { class: Npc, data: sprite_data_turtle }
         ];
+
+        // Start the timer
+        startTimer();
+    }
+
+    update() {
+        // Update the turtle's position towards the player
+        let player = this.objects[1]; // Player object
+        let turtle = this.objects[4]; // Turtle object
+
+        if (turtle && player) {
+            moveTurtleToPlayer(turtle, player);
+            checkCollision(turtle, player);
+        }
     }
 }
 
