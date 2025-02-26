@@ -1,3 +1,4 @@
+
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import Player from './Player.js';
@@ -92,29 +93,8 @@ class GameLevelCity {
         // Stop the game or implement other logic after the time's up
       }
     }, 1000);
-
-    // Event listener for the Esc key to restart the game or show a congrats message
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        const elapsedTime = Date.now() - this.timerStartTime;
-
-        if (elapsedTime < 30000) {
-          // Restart the game/level if pressed before 30 seconds
-          alert("Game Restarted!");
-          this.restartGame(path);  // Call to restart the game logic
-        } else {
-          // Show a congrats message if pressed after 30 seconds
-          alert("Congrats! You've completed the level!");
-        }
-      }
-    });
-  }
-
-  // Function to restart the game/level
-  restartGame(path) {
-    // Logic to restart the game by recreating the game objects and restarting the timer
-    new GameLevelCity(path);  // Create a new instance of the game level to restart
   }
 }
 
 export default GameLevelCity;
+
