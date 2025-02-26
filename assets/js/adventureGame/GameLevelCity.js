@@ -76,58 +76,11 @@ class GameLevelCity {
       { class: Player, data: sprite_data_stockguy }, // Replaced with new player sprite
       { class: Npc, data: sprite_data_tux },
       { class: Npc, data: sprite_data_octocat }
-    ];
-
-    // Collision counter
-    this.collisionCount = 0;
-    this.collisionMessage = "";
+    ];    
 
     // Timer setup
     this.timerStartTime = Date.now();
     this.timerDuration = 60000; // 60 seconds
-
-    // Update the collision counter when player collides with NPC
-    this.updateCollision = () => {
-      this.collisionCount++;
-    };
-
-    // Display the tally on the screen
-    this.displayCollisionCount = () => {
-      const collisionText = `Collisions: ${this.collisionCount}`;
-      const collisionDisplay = document.getElementById("collision-count");
-
-      if (!collisionDisplay) {
-        const newDisplay = document.createElement("div");
-        newDisplay.id = "collision-count";
-        newDisplay.style.position = "absolute";
-        newDisplay.style.top = "10px";
-        newDisplay.style.left = "50%";
-        newDisplay.style.transform = "translateX(-50%)";  // Center the text horizontally
-        newDisplay.style.color = "white";
-        newDisplay.style.fontSize = "20px";
-        document.body.appendChild(newDisplay);
-      }
-
-      document.getElementById("collision-count").innerText = collisionText;
-    };
-
-    // Listen for the "ESC" key press to move to the next level
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        if (this.collisionCount >= 5) {
-          // All levels completed, continue to the next level
-          this.collisionMessage = "All levels completed!";
-          alert(this.collisionMessage);
-
-          // Logic to end the level or move to the next level
-        } else {
-          // Job not done yet, don't immediately end the level
-          this.collisionMessage = "Job not done yet!";
-          alert(this.collisionMessage);
-          // Do not end the level here, just show the message
-        }
-      }
-    });
 
     // Check if the time is up every second
     setInterval(() => {
@@ -140,30 +93,6 @@ class GameLevelCity {
       }
     }, 1000);
   }
-
-  // Method to check collisions (add this where you detect collisions)
-  checkCollisions(player, npcs) {
-    npcs.forEach((npc) => {
-      if (this.isColliding(player, npc)) {
-        this.updateCollision();
-        this.displayCollisionCount();
-      }
-    });
-  }
-
-  // Collision detection logic (for example, simple AABB)
-  isColliding(player, npc) {
-    const playerBounds = player.getBounds();
-    const npcBounds = npc.getBounds();
-    
-    return !(
-      playerBounds.right < npcBounds.left ||
-      playerBounds.left > npcBounds.right ||
-      playerBounds.bottom < npcBounds.top ||
-      playerBounds.top > npcBounds.bottom //Collision
-    );
-  }
 }
 
 export default GameLevelCity;
-
