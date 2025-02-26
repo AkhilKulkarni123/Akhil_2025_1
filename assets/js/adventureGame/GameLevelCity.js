@@ -73,9 +73,9 @@ class GameLevelCity {
     // Coin data
     const sprite_src_coin = path + "/images/gamify/coin.png";
     this.coins = [
-      { x: width * 0.2, y: height * 0.3, collected: false },
-      { x: width * 0.5, y: height * 0.5, collected: false },
-      { x: width * 0.8, y: height * 0.7, collected: false }
+      { x: width * 0.2, y: height * 0.3, collected: false, width: 30, height: 30 },
+      { x: width * 0.5, y: height * 0.5, collected: false, width: 30, height: 30 },
+      { x: width * 0.8, y: height * 0.7, collected: false, width: 30, height: 30 }
     ];
 
     // Render coins
@@ -85,7 +85,7 @@ class GameLevelCity {
       img.onload = () => {
         this.coins.forEach(coin => {
           if (!coin.collected) {
-            context.drawImage(img, coin.x, coin.y, 30, 30);
+            context.drawImage(img, coin.x, coin.y, coin.width, coin.height);
           }
         });
       };
@@ -94,7 +94,7 @@ class GameLevelCity {
     // Handle coin collection
     this.checkCoinCollection = (player) => {
       this.coins.forEach(coin => {
-        if (!coin.collected && Math.abs(player.x - coin.x) < 30 && Math.abs(player.y - coin.y) < 30) {
+        if (!coin.collected && Math.abs(player.x - coin.x) < coin.width && Math.abs(player.y - coin.y) < coin.height) {
           coin.collected = true;
         }
       });
