@@ -1,4 +1,3 @@
-
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import Player from './Player.js';
@@ -77,7 +76,7 @@ class GameLevelCity {
       { class: Player, data: sprite_data_stockguy }, // Replaced with new player sprite
       { class: Npc, data: sprite_data_tux },
       { class: Npc, data: sprite_data_octocat }
-    ];    
+    ];
 
     // Timer setup
     this.timerStartTime = Date.now();
@@ -93,8 +92,22 @@ class GameLevelCity {
         // Stop the game or implement other logic after the time's up
       }
     }, 1000);
+
+    // Logic for ESC key press and time condition
+    document.addEventListener('keydown', (event) => {
+      if (event.key === "Escape") {
+        const elapsedTime = Date.now() - this.timerStartTime;
+
+        if (elapsedTime < 30000) {
+          alert("Too bad!");
+          // Reset the game
+          window.location.reload(); // This will reload the page and restart the game
+        } else {
+          alert("Congrats!");
+        }
+      }
+    });
   }
 }
 
 export default GameLevelCity;
-
