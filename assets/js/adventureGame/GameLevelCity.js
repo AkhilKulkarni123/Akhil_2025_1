@@ -30,13 +30,13 @@ class GameLevelCity {
       STEP_FACTOR: 1000,
       ANIMATION_RATE: 50,
       INIT_POSITION: { x: 0, y: height - (height / STOCKGUY_SCALE_FACTOR) },
-      pixels: { height: 768, width: 576 },
+      pixels: { height: 768, width: 576 }, // Adjusted for the 3x4 sprite sheet
       orientation: { rows: 4, columns: 3 },
       down: { row: 0, start: 0, columns: 3 },
       left: { row: 1, start: 0, columns: 3 },
       right: { row: 2, start: 0, columns: 3 },
       up: { row: 3, start: 0, columns: 3 },
-      hitbox: { widthPercentage: 0.5, heightPercentage: 0.25 },
+      hitbox: { widthPercentage: 0.5, heightPercentage: 0.25 }, // Adjusted for proportions
       keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
 
@@ -70,59 +70,13 @@ class GameLevelCity {
       hitbox: { widthPercentage: 0.3, heightPercentage: 0.3 },
     };
 
-    // Coin data
-    const sprite_src_coin = path + "/images/gamify/coin.png";
-    this.coins = [
-      { x: width * 0.2, y: height * 0.3, collected: false, width: 30, height: 30 },
-      { x: width * 0.5, y: height * 0.5, collected: false, width: 30, height: 30 },
-      { x: width * 0.8, y: height * 0.7, collected: false, width: 30, height: 30 }
-    ];
-
-    // Render coins
-    this.renderCoins = (context) => {
-      const img = new Image();
-      img.src = sprite_src_coin;
-      img.onload = () => {
-        this.coins.forEach(coin => {
-          if (!coin.collected) {
-            context.drawImage(img, coin.x, coin.y, coin.width, coin.height);
-          }
-        });
-      };
-    };
-
-    // Handle coin collection
-    this.checkCoinCollection = (player) => {
-      this.coins.forEach(coin => {
-        if (!coin.collected && Math.abs(player.x - coin.x) < coin.width && Math.abs(player.y - coin.y) < coin.height) {
-          coin.collected = true;
-        }
-      });
-    };
-
-    // Display message after 3 seconds
-    setTimeout(() => {
-      alert("Get all the money to buy magic knowledge.");
-    }, 3000);
-
-    // Handle Escape key
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        if (this.coins.every(coin => coin.collected)) {
-          alert("Congrats!");
-        } else {
-          location.reload();
-        }
-      }
-    });
-
     // List of objects definitions for this city level
     this.objects = [
       { class: Background, data: image_data_city },
-      { class: Player, data: sprite_data_stockguy },
+      { class: Player, data: sprite_data_stockguy }, // Replaced with new player sprite
       { class: Npc, data: sprite_data_tux },
       { class: Npc, data: sprite_data_octocat }
-    ];
+    ];    
 
     // Timer setup
     this.timerStartTime = Date.now();
@@ -138,6 +92,28 @@ class GameLevelCity {
         // Stop the game or implement other logic after the time's up
       }
     }, 1000);
+
+    // Event listener for the Esc key to restart the game or show a congrats message
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        const elapsedTime = Date.now() - this.timerStartTime;
+
+        if (elapsedTime < 30000) {
+          // Restart the game/level if pressed before 30 seconds
+          alert("Game Restarted!");
+          this.restartGame(path);  // Call to restart the game logic
+        } else {
+          // Show a congrats message if pressed after 30 seconds
+          alert("Congrats! You've completed the level!");
+        }
+      }
+    });
+  }
+
+  // Function to restart the game/level
+  restartGame(path) {
+    // Logic to restart the game by recreating the game objects and restarting the timer
+    new GameLevelCity(path);  // Create a new instance of the game level to restart
   }
 }
 
