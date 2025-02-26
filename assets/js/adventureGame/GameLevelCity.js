@@ -80,13 +80,15 @@ class GameLevelCity {
 
     // Render coins
     this.renderCoins = (context) => {
-      this.coins.forEach(coin => {
-        if (!coin.collected) {
-          let img = new Image();
-          img.src = sprite_src_coin;
-          context.drawImage(img, coin.x, coin.y, 30, 30);
-        }
-      });
+      const img = new Image();
+      img.src = sprite_src_coin;
+      img.onload = () => {
+        this.coins.forEach(coin => {
+          if (!coin.collected) {
+            context.drawImage(img, coin.x, coin.y, 30, 30);
+          }
+        });
+      };
     };
 
     // Handle coin collection
