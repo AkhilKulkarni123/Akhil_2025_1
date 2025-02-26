@@ -41,33 +41,34 @@ class GameLevelMagic {
             { class: Player, data: sprite_data_chillguy }
         ];
 
-        this.quizQuestions = [
-            { question: "Which command is used to list files in a directory?", answer: "ls" },
-            { question: "Which command is used to change directories?", answer: "cd" },
-            { question: "Which command is used to create a new directory?", answer: "mkdir" },
-            { question: "Which command is used to remove a file?", answer: "rm" },
-            { question: "Which command is used to remove a directory?", answer: "rmdir" }
-        ];
-
-        this.startQuiz();
+        setTimeout(() => this.startQuiz(), 5000);
     }
 
     startQuiz() {
-        let correctAnswers = 0;
-        for (let i = 0; i < this.quizQuestions.length; i++) {
-            let userAnswer = prompt(this.quizQuestions[i].question);
-            if (userAnswer && userAnswer.trim().toLowerCase() === this.quizQuestions[i].answer) {
-                correctAnswers++;
+        const questions = [
+            { q: "Which command is used to list files in a directory?", a: "ls" },
+            { q: "Which command is used to change directories?", a: "cd" },
+            { q: "Which command is used to create a new directory?", a: "mkdir" },
+            { q: "Which command is used to remove a file?", a: "rm" },
+            { q: "Which command is used to remove a directory?", a: "rmdir" }
+        ];
+
+        let correct = true;
+
+        for (let i = 0; i < questions.length; i++) {
+            let answer = prompt(questions[i].q);
+            if (answer.trim().toLowerCase() !== questions[i].a) {
+                correct = false;
             }
         }
 
-        if (correctAnswers === this.quizQuestions.length) {
+        if (correct) {
             alert("Just Kidding!");
             alert("Congrats, you are a smarty pants!");
         } else {
-            alert("You didn't get all answers correct. Press ESC to restart the level.");
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
+            alert("Incorrect answers! Press Esc to restart the game.");
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
                     location.reload();
                 }
             });
