@@ -107,6 +107,11 @@ class GameLevelCity {
         }
       }
     });
+
+    // Show alert after 2 seconds
+    setTimeout(() => {
+      alert("Hello traveler! Now the true test begins. Meet up with the NPC's to gain enough knowledge for the final test!!!");
+    }, 2000);
   }
 }
 
