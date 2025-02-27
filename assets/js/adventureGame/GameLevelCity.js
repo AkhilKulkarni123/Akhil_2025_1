@@ -99,7 +99,7 @@ class GameLevelCity {
         const elapsedTime = Date.now() - this.timerStartTime;
 
         if (elapsedTime < 25000) {
-          alert("You need more knowledge, try the journey again!");
+          alert("You need more knowledge, you must meet with all of the NPC's. Try the journey again!");
           // Reset the game
           window.location.reload(); // This will reload the page and restart the game
         } else {
