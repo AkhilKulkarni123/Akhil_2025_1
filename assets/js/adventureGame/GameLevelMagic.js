@@ -63,7 +63,7 @@ class GameLevelMagic {
         }
 
         if (correct) {
-            alert("Just Kidding!");
+            alert("Wow, all answers are correct!");
             alert("Congrats, you are a smarty pants!");
         } else {
             alert("Incorrect answers! Press Esc to restart the game.");
