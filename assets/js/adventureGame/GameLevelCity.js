@@ -98,12 +98,12 @@ class GameLevelCity {
       if (event.key === "Escape") {
         const elapsedTime = Date.now() - this.timerStartTime;
 
-        if (elapsedTime < 30000) {
-          alert("Too bad!");
+        if (elapsedTime < 25000) {
+          alert("You need more knowledge, try the journey again!");
           // Reset the game
           window.location.reload(); // This will reload the page and restart the game
         } else {
-          alert("Congrats!");
+          alert("Congrats! You are ready for the true test");
         }
       }
     });
