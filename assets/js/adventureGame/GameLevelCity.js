@@ -80,7 +80,7 @@ class GameLevelCity {
 
     // Timer setup
     this.timerStartTime = Date.now();
-    this.timerDuration = 60000; // 60 seconds
+    this.timerDuration = 70000; // 70 seconds
 
     // Check if the time is up every second
     setInterval(() => {
