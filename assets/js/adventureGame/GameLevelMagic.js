@@ -16,8 +16,8 @@ class GameLevelMagic {
             pixels: { height: 720, width: 1280 }
         };
 
-        const sprite_src_chillguy = path + "/images/gamify/harryanimation2.png";
-        const CHILLGUY_SCALE_FACTOR = 2;
+        const sprite_src_chillguy = path + "/images/gamify/Download17930.png";
+        const CHILLGUY_SCALE_FACTOR = 5;
         const sprite_data_chillguy = {
             id: 'Chill Guy',
             greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdom and adventure!",
@@ -26,12 +26,12 @@ class GameLevelMagic {
             STEP_FACTOR: 1000,
             ANIMATION_RATE: 50,
             INIT_POSITION: { x: 0, y: height - (height / CHILLGUY_SCALE_FACTOR) },
-            pixels: { height: 64, width: 32 },
-            orientation: { rows: 3, columns: 4 },
-            down: { row: 0, start: 0, columns: 3 },
-            left: { row: 2, start: 0, columns: 3 },
-            right: { row: 1, start: 0, columns: 3 },
-            up: { row: 3, start: 0, columns: 3 },
+            pixels: { height: 268, width: 569 },
+            orientation: { rows: 4, columns: 9 },
+            down: { row: 2, start: 0, columns: 9 },
+            left: { row: 1, start: 0, columns: 9 },
+            right: { row: 3, start: 0, columns: 9 },
+            up: { row: 0, start: 0, columns: 9 },
             hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
             keypress: { up: 87, left: 65, down: 83, right: 68 }
         };
