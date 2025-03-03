@@ -41,7 +41,24 @@ class GameLevelMagic {
             { class: Player, data: sprite_data_chillguy }
         ];
 
-        setTimeout(() => this.startQuiz(), 5000);
+        // Start the quiz after 6 seconds
+        setTimeout(() => this.startQuiz(), 6000);
+
+        // Detect key press within 4 seconds to restart the game and show BAD!
+        this.startTime = Date.now();
+        document.addEventListener('keydown', this.handleKeyPress.bind(this));
+
+        // Alert after 5 seconds saying "Get Ready for The Quiz!"
+        setTimeout(() => {
+            alert("Get Ready for The Quiz!");
+        }, 5000);
+    }
+
+    handleKeyPress(event) {
+        if (Date.now() - this.startTime <= 4000) { // User pressed within 4 seconds
+            alert("Do the quiz, dont rush the journey!");
+            location.reload(); // Reload the game
+        }
     }
 
     startQuiz() {
