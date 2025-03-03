@@ -21,7 +21,7 @@ class GameLevelCity {
 
     // Player data for Stock Guy (New Sprite)
     const sprite_src_stockguy = path + "/images/gamify/walking_sprite_sheet.png";
-    const STOCKGUY_SCALE_FACTOR = 2;
+    const STOCKGUY_SCALE_FACTOR = 10;
     const sprite_data_stockguy = {
       id: 'Stock Guy',
       greeting: "Hi I am Stock Guy, ready for business and adventure!",
