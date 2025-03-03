@@ -132,52 +132,52 @@ This blog contains my journey into Coding.
     </a>
 </div>
 
-> Here are all of my homework notebooks and my own individual java script lesson, homework, and hacks
+> Here are all of my homework notebooks and my own individual java script lesson, homework, and hacks BIG BOY
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/Control_Structures" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            Control_Structures
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/Data_Types" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            Data_Types
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/Operators" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            Operators
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/Adventure_Game" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            Adventure_Game
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/Operator/Checklist/Changes" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            Checklists_Changes_Burndown
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/Input_Output" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            Input_Output
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/NATM_Reflection" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            NATM_Reflection
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/Software_Developement_Cycle" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            Software_Developement_Cycle
         </div>
     </a>
-    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/csse/javascript/Five_Things_Learned" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Blog
+            Five_Things_Learned
         </div>
     </a>
 </div>
