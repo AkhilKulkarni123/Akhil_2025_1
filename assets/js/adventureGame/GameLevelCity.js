@@ -20,8 +20,8 @@ class GameLevelCity {
     };
 
     // Player data for Stock Guy (New Sprite)
-    const sprite_src_stockguy = path + "/images/gamify/walking_sprite_sheet.png";
-    const STOCKGUY_SCALE_FACTOR = 10;
+    const sprite_src_stockguy = path + "/images/gamify/Download63571.png";
+    const STOCKGUY_SCALE_FACTOR = 5;
     const sprite_data_stockguy = {
       id: 'Stock Guy',
       greeting: "Hi I am Stock Guy, ready for business and adventure!",
@@ -30,12 +30,12 @@ class GameLevelCity {
       STEP_FACTOR: 1000,
       ANIMATION_RATE: 50,
       INIT_POSITION: { x: 0, y: height - (height / STOCKGUY_SCALE_FACTOR) },
-      pixels: { height: 768, width: 576 }, // Adjusted for the 3x4 sprite sheet
-      orientation: { rows: 4, columns: 3 },
-      down: { row: 0, start: 0, columns: 3 },
-      left: { row: 1, start: 0, columns: 3 },
-      right: { row: 2, start: 0, columns: 3 },
-      up: { row: 3, start: 0, columns: 3 },
+      pixels: { height: 258, width: 567 }, // Adjusted for the 3x4 sprite sheet
+      orientation: { rows: 4, columns: 9 },
+      down: { row: 2, start: 0, columns: 9 },
+      left: { row: 1, start: 0, columns: 9 },
+      right: { row: 3, start: 0, columns: 9 },
+      up: { row: 0, start: 0, columns: 9 },
       hitbox: { widthPercentage: 0.5, heightPercentage: 0.25 }, // Adjusted for proportions
       keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
