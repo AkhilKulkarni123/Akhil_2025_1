@@ -44,7 +44,7 @@ class GameLevelMagic {
         // Start the quiz after 6 seconds
         setTimeout(() => this.startQuiz(), 6000);
 
-        // Detect key press within 4 seconds to restart the game and show BAD!
+        // Detect key press within 4 seconds to show "Don't rush the quiz" and restart only if ESC is pressed
         this.startTime = Date.now();
         document.addEventListener('keydown', this.handleKeyPress.bind(this));
 
@@ -56,8 +56,10 @@ class GameLevelMagic {
 
     handleKeyPress(event) {
         if (Date.now() - this.startTime <= 4000) { // User pressed within 4 seconds
-            alert("Do the quiz, dont rush the journey!");
-            location.reload(); // Reload the game
+            if (event.key === "Escape") {
+                alert("Don't rush the quiz!");
+                location.reload(); // Restart the game if ESC is pressed
+            }
         }
     }
 
