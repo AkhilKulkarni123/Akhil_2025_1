@@ -16,7 +16,7 @@ class GameLevelMagic {
             pixels: { height: 720, width: 1280 }
         };
 
-        const sprite_src_chillguy = path + "/images/gamify/main.png";
+        const sprite_src_chillguy = path + "/images/gamify/harryanimation2.png";
         const CHILLGUY_SCALE_FACTOR = 5;
         const sprite_data_chillguy = {
             id: 'Chill Guy',
@@ -26,7 +26,7 @@ class GameLevelMagic {
             STEP_FACTOR: 1000,
             ANIMATION_RATE: 50,
             INIT_POSITION: { x: 0, y: height - (height / CHILLGUY_SCALE_FACTOR) },
-            pixels: { height: 280, width: 256 },
+            pixels: { height: 64, width: 32 },
             orientation: { rows: 3, columns: 4 },
             down: { row: 0, start: 0, columns: 3 },
             left: { row: 2, start: 0, columns: 3 },
