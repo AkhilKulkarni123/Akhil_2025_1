@@ -82,8 +82,8 @@ New Kasm Test
 
       this.tID = setInterval(() => {
         const col = (frame + obj.col) * this.pixels;
-        this.marioElement.style.backgroundPosition = `-${col}px -${row}px`;
-        this.marioElement.style.left = `${this.positionX}px`;
+        this.marioElement.style.backgroundPosition = -${col}px -${row}px;
+        this.marioElement.style.left = ${this.positionX}px;
 
         this.positionX += speed;
         frame = (frame + 1) % obj.frames;
@@ -187,43 +187,13 @@ New Kasm Test
     // adjust sprite size for high pixel density devices
     const scale = window.devicePixelRatio;
     const sprite = document.querySelector(".sprite");
-    sprite.style.transform = `scale(${0.2 * scale})`;
+    sprite.style.transform = scale(${0.2 * scale});
     mario.startResting();
   });
 
 </script>
 
-Markdown samples markdown cheatsheet
-Using markdown form index.md. We are learning markdown.
 
-This text below is something called Markdown. This is a heading, inside of code scaffolding.
-## Investing in Your Technical Future XXXYYY
-This is emphasis
-> Explore the Computer Science Pathway at Del Norte High School and invest in your technical skills. All Del Norte CompSci classes are designed to provide a real-world development experience. Class time includes tech talks (lectures), peer collaboration, communication with teachers, critical thinking while coding, and creativity in projects. Grading is focused on time invested, participation with peers, and engagement in learning.
-Sample of bullets
-- Introduction to concepts and requirements by the teacher
-- Project-based learning with teacher support, performing Agile/Scrum development in the classroom
-- Coding, frontend, backend, devops, version control and algorithmic thinking
-- Creativity, research, design, data structures, and utilizing ChatGPT for help in rational aid
-- Performing team work, team communication and collaboration, peer reviews/grading
-- Focus on tehnical communications through project presentations and student led teaching
-- Grades are on projects, learnt concepts, and live reviews between student(s) and teacher in the classroom.
-- This is emphasis ``` Markdown
-Explore the Computer Science Pathway at Del Norte High School and invest in your technical skills. All Del Norte CompSci classes are designed to provide a real-world development experience. Class time includes tech talks (lectures), peer collaboration, communication with teachers, critical thinking while coding, and creativity in projects. Grading is focused on time invested, participation with peers, and engagement in learning.
-2:14
-- Introduction to concepts and requirements by the teacher
-- Project-based learning with teacher support, performing Agile/Scrum development
-- Coding, frontend, backend, devops, version control and algorithmic thinking for problem solving
-- Creativity, research, design, data structures, and utilizing ChatGPT
-- Performing team work, team communication and collaboration, peer reviews/grading
-- Focus on tehnical communications through project presentations and student led teaching
-- Grades are on projects, learnt concepts, and live reviews between student(s) and teacher
-Classroom work time is 3-4 hours per week. Homework expectations are approximately 2-3 hours per week.  Homework is scheduled over a Sprint, approximately 2-4 weeks.  Time lost is extremely hard to make up as all materials are cummulative in the classroom.
-![ccr]({{site.baseurl}}/images/course-brag/ccr.png)
-## Computer Science and Software Engineering (CSSE) 1,2; Grades 9-12
-> CSSE 1,2 prepares students for the AP Computer Science pathway. This course focuses on teaching the JavaScript programming language, object-oriented programming and inheritance, and developing algorithmic thinking skills. Through game development projects, students will engage in engineering skills, learn fundamentals of programming, work with data structures, and foster collaboration skills with their peers. Tech talks will be conducted by teachers to introduce concepts, provide guidance on tools, and support ideas to establish development requirements. By performing development and exploration, this course aims to raise students' awareness of the tremendous capabilities of computers and software engineering skills across various fields.
-<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jelly_cc11.jpg/800px-Jelly_cc11.jpg">
-Jelly Fish Fun
 
 
 
@@ -326,25 +296,49 @@ This blog contains my journey into Coding.
 > Here are all of my homework notebooks and my own individual java script lesson, homework, and hacks
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <a href="{{site.baseurl}}/csse/javascript/fundamentals/variables" style="text-decoration: none;">
-        <div style="background-color: #000000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Variables I/O
-        </div>
-    </a>
-    <a href="{{site.baseurl}}/csse/javascript/fundamentals/data-types/" style="text-decoration: none;">
-        <div style="background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Data Types
-        </div>
-    </a>
-    <a href="{{site.baseurl}}/csse/javascript/fundamentals/for-loops/" style="text-decoration: none;">
-        <div style="background-color: #00BFFF; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            For Loops and Sprite Hack
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Blog
         </div>
     </a>
     <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Game Animation
+            Blog
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Blog
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Blog
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Blog
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Blog
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Blog
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Blog
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Sprint2/2023-09-21-game_animations-json-object.ipynb" style="text-decoration: none;">
+        <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Blog
         </div>
     </a>
 </div>
-
