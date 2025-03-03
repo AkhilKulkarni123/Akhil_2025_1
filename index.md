@@ -135,47 +135,47 @@ This blog contains my journey into Coding.
 > Here are all of my homework notebooks and my own individual java script lesson, homework, and hacks BIG BOY
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <a href="{{site.baseurl}}/csse/javascript/Control_Structures" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/CSSE1_Final/Control_Structures.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Control_Structures
         </div>
     </a>
-    <a href="{{site.baseurl}}/csse/javascript/Data_Types" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/CSSE1_Final/Data_Types.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Data_Types
         </div>
     </a>
-    <a href="{{site.baseurl}}/csse/javascript/Operators" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/CSSE1_Final/Operators.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Operators
         </div>
     </a>
-    <a href="{{site.baseurl}}/csse/javascript/Adventure_Game" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/CSSE2_BLOGS/Adventure_Game.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Adventure_Game
         </div>
     </a>
-    <a href="{{site.baseurl}}/csse/javascript/Operator/Checklist/Changes" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/CSSE2_BLOGS/Checklists_Changes.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Checklists_Changes_Burndown
         </div>
     </a>
-    <a href="{{site.baseurl}}/csse/javascript/Input_Output" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/PBL_Blogs/Input_Output.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Input_Output
         </div>
     </a>
-    <a href="{{site.baseurl}}/csse/javascript/NATM_Reflection" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/PBL_Blogs/NATM_Refflection_Improvements.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             NATM_Reflection
         </div>
     </a>
-    <a href="{{site.baseurl}}/csse/javascript/Software_Developement_Cycle" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/PBL_Blogs/Software_Developement_Cycle.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Software_Developement_Cycle
         </div>
     </a>
-    <a href="{{site.baseurl}}/csse/javascript/Five_Things_Learned" style="text-decoration: none;">
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Five_Things_Learned.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Five_Things_Learned
         </div>
