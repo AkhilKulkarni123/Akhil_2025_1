@@ -22,20 +22,6 @@ New Kasm Test
 
  
 
- 
-        
-    
-     
-  
-      
-    
-  
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -178,6 +164,11 @@ This blog contains my journey into Coding.
     <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/Five_Things_Learned.ipynb" style="text-decoration: none;">
         <div style="background-color: #8A2BE2; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Five_Things_Learned
+        </div>
+    </a>
+    <a href="https://github.com/AkhilKulkarni123/Akhil_2025_1/blob/main/_notebooks/PBL_Blogs/Retrospective_Reflection.ipynb" style="text-decoration: none;">
+        <div style="background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            William's Game Reflection
         </div>
     </a>
 </div>
