@@ -8,184 +8,350 @@ permalink: /apcsp/mcq-review
 categories: [AP CSP]
 ---
 
+<style>
+  .score-card {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .score-box {
+    background: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 18px 24px;
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+  }
+  .score-box .label {
+    color: #b6b6b6;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .score-box .value {
+    color: #ffcc00;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 4px;
+  }
+  .score-box .value.green { color: #4caf50; }
+  .score-box .value.red { color: #f44336; }
+
+  .bar-container {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bar-label {
+    color: #e8e8e8;
+    min-width: 200px;
+    font-size: 0.9em;
+  }
+  .bar-track {
+    flex: 1;
+    background: #333;
+    border-radius: 6px;
+    height: 22px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.3s;
+  }
+  .bar-fill.green { background: linear-gradient(90deg, #388e3c, #4caf50); }
+  .bar-fill.yellow { background: linear-gradient(90deg, #f9a825, #fdd835); }
+  .bar-fill.red { background: linear-gradient(90deg, #c62828, #f44336); }
+  .bar-stat {
+    color: #b6b6b6;
+    font-size: 0.85em;
+    min-width: 90px;
+    text-align: right;
+  }
+
+  .section-box {
+    background: #1e1e1e;
+    border-left: 4px solid #ffcc00;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+  .section-box h4 { color: #ffcc00; margin-top: 0; }
+  .section-box p, .section-box li { color: #d7cfbe; }
+
+  .missed-q {
+    background: #2a1a1a;
+    border-left: 4px solid #f44336;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+  .missed-q h4 { color: #f44336; margin-top: 0; }
+  .missed-q p { color: #d7cfbe; }
+  .missed-q .takeaway {
+    background: #1e1e1e;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    color: #ffcc00;
+    font-style: italic;
+  }
+
+  .plan-step {
+    background: #1a2a1a;
+    border-left: 4px solid #4caf50;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 10px 0;
+  }
+  .plan-step h4 { color: #4caf50; margin-top: 0; }
+  .plan-step li { color: #d7cfbe; }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .summary-item {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 14px 18px;
+    border: 1px solid #333;
+  }
+  .summary-item .s-label { color: #b6b6b6; font-size: 0.8em; text-transform: uppercase; }
+  .summary-item .s-value { color: #e8e8e8; font-size: 1.05em; margin-top: 4px; }
+</style>
+
 ## Score Overview
 
-| Metric | Result |
-|--------|--------|
-| **Score** | **65 / 67** |
-| **Percentage** | **97%** |
-| **Time Spent** | **~1 hr 27 min** |
-| **Questions Missed** | **2** (Q11, Q23) |
-
-> Overall a strong result — but the two missed questions both fall under the same skill, which reveals a specific area to sharpen before the real exam.
+<div class="score-card">
+  <div class="score-box">
+    <div class="label">Score</div>
+    <div class="value green">65 / 67</div>
+  </div>
+  <div class="score-box">
+    <div class="label">Percentage</div>
+    <div class="value green">97%</div>
+  </div>
+  <div class="score-box">
+    <div class="label">Time Spent</div>
+    <div class="value">1h 27m</div>
+  </div>
+  <div class="score-box">
+    <div class="label">Missed</div>
+    <div class="value red">2</div>
+  </div>
+</div>
 
 ---
 
 ## Performance by Big Idea
 
-| Big Idea | Questions | Correct | Score |
-|----------|-----------|---------|-------|
-| **1 — Creative Development** | Q1, Q8, Q16, Q39, Q54, Q58, Q64, Q66, Q67 | 9/9 | ✅ 100% |
-| **2 — Data** | Q4, Q11, Q12, Q13, Q17, Q19, Q20, Q21, Q26, Q29, Q33, Q49, Q63 | 12/13 | ⚠️ 92% |
-| **3 — Algorithms & Programming** | Q3, Q5, Q6, Q14, Q15, Q18, Q22, Q23, Q24, Q28, Q30, Q32, Q34, Q35, Q37, Q41, Q42, Q45, Q47, Q50, Q52, Q55, Q56, Q60, Q62, Q65 | 25/26 | ⚠️ 96% |
-| **4 — Computing Systems & Networks** | Q25, Q38, Q43, Q44, Q46, Q57 | 6/6 | ✅ 100% |
-| **5 — Impact of Computing** | Q2, Q7, Q9, Q10, Q31, Q36, Q40, Q48, Q51, Q53, Q59, Q61 | 12/12 | ✅ 100% |
-
-```
-Big Idea Performance
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1 - Creative Development    ██████████████████████ 100%  (9/9)
-2 - Data                    ████████████████████░░  92%  (12/13)
-3 - Algorithms & Prog.      █████████████████████░  96%  (25/26)
-4 - Comp. Systems & Net.    ██████████████████████ 100%  (6/6)
-5 - Impact of Computing     ██████████████████████ 100%  (12/12)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+<div class="bar-container">
+  <span class="bar-label">1 — Creative Development</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">9/9 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">2 — Data</span>
+  <div class="bar-track"><div class="bar-fill yellow" style="width:92%"></div></div>
+  <span class="bar-stat">12/13 (92%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">3 — Algorithms & Programming</span>
+  <div class="bar-track"><div class="bar-fill yellow" style="width:96%"></div></div>
+  <span class="bar-stat">25/26 (96%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">4 — Computing Systems & Networks</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">6/6 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">5 — Impact of Computing</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">12/12 (100%)</span>
+</div>
 
 ---
 
 ## Strengths
 
-### 1. Debugging & Error Identification (Skill 4.C) — Perfect
-Questions involving identifying errors in code — off-by-one errors, loop logic mistakes, and traversal bugs — were all answered correctly. This includes Q16, Q24, Q39, Q54, Q58, Q64, Q66, and Q67.
+<div class="section-box">
+  <h4>Debugging & Error Identification — Skill 4.C (8/8)</h4>
+  <p>Correctly identified errors in every question involving off-by-one bugs, loop logic mistakes, and list traversal issues (Q16, Q24, Q39, Q54, Q58, Q64, Q66, Q67). Comfortable tracing code line-by-line — this is one of the most heavily tested skills on the AP exam.</p>
+</div>
 
-**Why this is strong:** I'm comfortable tracing through code line-by-line and catching subtle logic errors in loops, conditionals, and list operations. This is one of the most tested skills on the AP exam and I feel confident here.
+<div class="section-box">
+  <h4>Procedures & Abstraction — Skill 4.B (6/6)</h4>
+  <p>All questions on calling procedures, return values, and working with abstractions answered correctly (Q32, Q34, Q37, Q49, Q60, Q65). Solid understanding of parameters, return values, and generalizing repeated logic.</p>
+</div>
 
-### 2. Procedures & Abstraction (Skill 4.B) — Perfect
-All questions on calling procedures, understanding return values, and working with abstractions (Q32, Q34, Q37, Q49, Q60, Q65) were answered correctly.
+<div class="section-box">
+  <h4>Computing & Internet — Big Ideas 4 & 5 (18/18)</h4>
+  <p>Perfect across all questions covering internet protocols, IPv6, network redundancy, cybersecurity (phishing, encryption, certificate authorities), digital divide, open source, Creative Commons, and crowdsourcing.</p>
+</div>
 
-**Why this is strong:** I have a solid understanding of how functions/procedures work, including parameters, return values, and how to generalize repeated logic.
-
-### 3. Impact of Computing & Internet (Big Ideas 4 & 5) — Perfect
-Every question on computing systems, networks, cybersecurity, digital divide, intellectual property, and the societal impact of computing was correct. Topics included:
-- Internet protocols and IPv6 (Q25, Q38, Q46, Q57)
-- Network redundancy and routing (Q43, Q44)
-- Cybersecurity — phishing, certificate authorities, encryption (Q9, Q40, Q48)
-- Digital divide, open source, Creative Commons (Q51, Q59, Q61)
-- Crowdsourcing and citizen science (Q2, Q53)
-
-**Why this is strong:** I've internalized the conceptual/vocabulary-heavy material well, and these questions tend to be quick reads with clear answers.
-
-### 4. Simulations & Randomness — Perfect
-All simulation questions (Q7, Q22, Q36, Q45, Q52) were answered correctly, covering flight simulation advantages, spinner simulation logic, coin flips, bacteria population models, and park foot traffic.
-
-### 5. Time Management on Conceptual Questions
-After the first two questions (which took ~37 and ~35 minutes, likely due to settling in), nearly every remaining question was answered in under 30 seconds. This shows strong familiarity with the material and efficient test-taking.
+<div class="section-box">
+  <h4>Simulations & Randomness (5/5)</h4>
+  <p>All simulation questions correct — flight simulations, spinner logic, coin flips, bacteria population models, and park foot traffic simulations.</p>
+</div>
 
 ---
 
-## Weaknesses — The Two Missed Questions
+## Weaknesses — The 2 Missed Questions
 
 Both missed questions share the same skill: **Skill 2.B — Determine the result or behavior of an algorithm or program.**
 
-### ❌ Q11: Color Represented by Binary Triplet (Topic 2.1 — Binary Numbers)
+<div class="missed-q">
+  <h4>Q11: Color Represented by Binary Triplet (Topic 2.1)</h4>
+  <p>Required converting a binary RGB triplet to decimal, then mapping it to a color. Likely made an arithmetic error during manual binary-to-decimal conversion under time pressure.</p>
+  <div class="takeaway">Takeaway: Need faster, more accurate binary-to-decimal conversions — especially for multi-value RGB problems.</div>
+</div>
 
-**What it tested:** Given a binary RGB triplet, determine which color it represents.
-
-**Why I missed it:** This requires converting binary values to decimal and then mapping the RGB values to a color. I likely made an arithmetic error or misread the binary-to-decimal conversion. Binary representation is something I understand conceptually, but under timed conditions the manual conversion step is error-prone.
-
-**Key Takeaway:** I need to practice binary ↔ decimal conversions quickly and accurately, especially for multi-value problems like RGB triplets where you need to convert three separate binary numbers.
-
-### ❌ Q23: Flowchart to Set Available (Topic 3.9 — Developing Algorithms)
-
-**What it tested:** Trace through a flowchart and determine the final value of a variable.
-
-**Why I missed it:** Flowchart tracing requires carefully following decision branches and keeping track of variable state. I likely misread a condition or took the wrong branch at a decision point. Spending only ~2 seconds on this question suggests I rushed through it.
-
-**Key Takeaway:** Flowchart questions require slowing down and carefully tracing each branch. I should not speed through visual algorithm representations just because they *look* simple.
+<div class="missed-q">
+  <h4>Q23: Flowchart to Set Available (Topic 3.9)</h4>
+  <p>Required tracing through a flowchart to determine a variable's final value. Spent only ~2 seconds on this — rushed through it and likely took the wrong branch at a decision point.</p>
+  <div class="takeaway">Takeaway: Slow down on flowchart questions. Trace every branch carefully instead of eyeballing it.</div>
+</div>
 
 ---
 
 ## Skill Breakdown
 
-| Skill | Description | Result |
-|-------|-------------|--------|
-| 1.A | Explain how computing innovations are improved through collaboration | 2/2 ✅ |
-| 1.B | Explain how computing concepts apply in a given context | 6/6 ✅ |
-| 1.C | Explain how collaboration affects the development of a solution | 1/1 ✅ |
-| 1.D | Evaluate solution options and their impact | 5/5 ✅ |
-| 2.A | Represent algorithmic processes without using a programming language | 4/4 ✅ |
-| **2.B** | **Determine the result of code segments** | **10/12** ⚠️ |
-| 4.A | Express an algorithm that uses sequencing, selection, and iteration | 1/1 ✅ |
-| 4.B | Determine the result of procedures and procedure calls | 6/6 ✅ |
-| 4.C | Identify and correct errors in algorithms and programs | 8/8 ✅ |
-| 5.A | Explain how programs implement algorithms | 1/1 ✅ |
-| 5.B | Explain how knowledge can be generated from data | 7/7 ✅ |
-| 5.D | Describe the impact of gathering data | 4/4 ✅ |
-| 5.E | Evaluate the use of computing based on legal and ethical factors | 3/3 ✅ |
-
-```
-Skill Performance
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1.A  ██████████████████████ 100%  (2/2)
-1.B  ██████████████████████ 100%  (6/6)
-1.C  ██████████████████████ 100%  (1/1)
-1.D  ██████████████████████ 100%  (5/5)
-2.A  ██████████████████████ 100%  (4/4)
-2.B  ██████████████████░░░░  83%  (10/12) ← FOCUS AREA
-4.A  ██████████████████████ 100%  (1/1)
-4.B  ██████████████████████ 100%  (6/6)
-4.C  ██████████████████████ 100%  (8/8)
-5.A  ██████████████████████ 100%  (1/1)
-5.B  ██████████████████████ 100%  (7/7)
-5.D  ██████████████████████ 100%  (4/4)
-5.E  ██████████████████████ 100%  (3/3)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+<div class="bar-container">
+  <span class="bar-label">1.A — Collaboration</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">2/2 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">1.B — Concepts in context</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">6/6 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">1.C — Collab on solutions</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">1/1 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">1.D — Evaluate solutions</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">5/5 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">2.A — Algorithmic processes</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">4/4 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label" style="color:#f44336;font-weight:bold;">2.B — Code results (FOCUS)</span>
+  <div class="bar-track"><div class="bar-fill red" style="width:83%"></div></div>
+  <span class="bar-stat" style="color:#f44336;font-weight:bold;">10/12 (83%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">4.A — Sequencing/selection/iteration</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">1/1 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">4.B — Procedures & calls</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">6/6 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">4.C — Error identification</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">8/8 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">5.A — Program algorithms</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">1/1 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">5.B — Knowledge from data</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">7/7 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">5.D — Impact of data</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">4/4 (100%)</span>
+</div>
+<div class="bar-container">
+  <span class="bar-label">5.E — Legal & ethical factors</span>
+  <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+  <span class="bar-stat">3/3 (100%)</span>
+</div>
 
 ---
 
 ## Improvement Plan
 
-### Focus Area: Skill 2.B — Determining Results of Algorithms & Code
+**Target: Skill 2.B — the only skill where I dropped points (10/12, 83%)**
 
-Both missed questions fall under Skill 2.B. While I got 10 out of 12 correct (83%), this is the only skill where I dropped points. Here's my plan:
+<div class="plan-step">
+  <h4>1. Daily Binary/Decimal Conversion Drills</h4>
+  <ul>
+    <li>5-10 quick binary-to-decimal conversions daily</li>
+    <li>Focus on multi-value problems (RGB triplets) where three conversions are needed</li>
+    <li>Memorize powers of 2: 128, 64, 32, 16, 8, 4, 2, 1</li>
+  </ul>
+</div>
 
-**1. Practice Binary/Decimal Conversions Daily**
-- Do 5-10 quick binary ↔ decimal conversions each day leading up to the exam
-- Focus on multi-value problems (like RGB) where multiple conversions are needed in one question
-- Use powers of 2 mental math (128, 64, 32, 16, 8, 4, 2, 1) until it becomes automatic
+<div class="plan-step">
+  <h4>2. Slow Down on Flowchart Questions</h4>
+  <ul>
+    <li>Trace <em>every</em> branch on paper — never eyeball flowcharts</li>
+    <li>Budget 30-60 seconds minimum for any flowchart question</li>
+    <li>Practice with College Board's released flowchart questions</li>
+  </ul>
+</div>
 
-**2. Slow Down on Flowchart / Visual Algorithm Questions**
-- When I see a flowchart, force myself to trace *every* path on paper instead of eyeballing it
-- Practice with College Board's released flowchart questions specifically
-- Budget at least 30-60 seconds for flowchart tracing — rushing leads to wrong branches
+<div class="plan-step">
+  <h4>3. Timed Practice & Tracking</h4>
+  <ul>
+    <li>Complete more College Board practice exams under timed conditions</li>
+    <li>Review every Skill 2.B question after each test — even ones I got right</li>
+    <li>Track Skill 2.B accuracy over time to measure progress</li>
+  </ul>
+</div>
 
-**3. Practice Full MCQ Sets Under Timed Conditions**
-- Complete additional College Board practice exams to build endurance
-- After each practice test, review every Skill 2.B question regardless of whether I got it right
-- Track my Skill 2.B accuracy over time to measure improvement
-
-**4. Create a Quick-Reference Sheet for Common Pitfalls**
-- Binary conversion steps (especially for RGB/color problems)
-- Flowchart tracing checklist (check each condition, follow the correct branch, update variables)
-- Common "trick" patterns in algorithm tracing questions
-
----
-
-## Time Analysis
-
-| Phase | Time | Notes |
-|-------|------|-------|
-| Q1-Q2 | ~72 min | Initial settling / potentially reviewing material |
-| Q3-Q67 | ~15 min | Rapid-fire — most questions under 15 seconds |
-| **Total** | **~87 min** | Well within the 120-minute limit |
-
-The first two questions took a disproportionate amount of time. On the real exam, I should:
-- **Skip questions I'm stuck on** and come back later
-- **Budget ~1.5 min per question** on average (67 questions × 1.5 min = ~100 min, leaving 20 min for review)
-- **Flag uncertain answers** for review at the end
+<div class="plan-step">
+  <h4>4. Time Management on Exam Day</h4>
+  <ul>
+    <li>Budget ~1.5 min per question (100 min for 67 Qs, leaving 20 min review)</li>
+    <li>Skip questions I'm stuck on and come back — don't burn 30+ min early</li>
+    <li>Flag uncertain answers for end-of-exam review</li>
+  </ul>
+</div>
 
 ---
 
 ## Final Takeaways
 
-| Category | Status |
-|----------|--------|
-| Overall Readiness | Strong — 97% is well above the 5-score threshold |
-| Biggest Strength | Error identification & debugging (Skill 4.C — 8/8) |
-| Biggest Weakness | Algorithm/code tracing (Skill 2.B — 10/12) |
-| Knowledge Gaps | Binary-to-color mapping, flowchart tracing under pressure |
-| Action Items | Daily binary drills, slow flowchart tracing, more timed practice |
+<div class="summary-grid">
+  <div class="summary-item">
+    <div class="s-label">Overall Readiness</div>
+    <div class="s-value" style="color:#4caf50;">Strong — 97% is well above the 5-score threshold</div>
+  </div>
+  <div class="summary-item">
+    <div class="s-label">Biggest Strength</div>
+    <div class="s-value">Error identification & debugging (Skill 4.C — 8/8)</div>
+  </div>
+  <div class="summary-item">
+    <div class="s-label">Biggest Weakness</div>
+    <div class="s-value" style="color:#f44336;">Algorithm/code tracing (Skill 2.B — 10/12)</div>
+  </div>
+  <div class="summary-item">
+    <div class="s-label">Action Items</div>
+    <div class="s-value">Daily binary drills, slow flowchart tracing, more timed practice</div>
+  </div>
+</div>
 
-> **Bottom line:** I'm in a great position for the AP CSP exam. The foundation is solid across all 5 Big Ideas. The targeted work on Skill 2.B — specifically binary conversions and flowchart tracing — will close the small gap and push toward a perfect score.
+> **Bottom line:** The foundation is solid across all 5 Big Ideas. Targeted work on Skill 2.B — binary conversions and flowchart tracing — will close the small gap and push toward a perfect score.
