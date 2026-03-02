@@ -8,6 +8,84 @@ permalink: /apcsp/mcq-review
 categories: [AP CSP]
 ---
 
+<style>
+/* ── Code blocks: override light Gruvbox skin with a dark palette ── */
+.post-content .highlight,
+.post-content .highlight .w {
+  color: #f8f8f2 !important;
+  background-color: #1e1e2e !important;
+}
+.post-content pre,
+.post-content pre code,
+.post-content .highlight pre {
+  color: #f8f8f2 !important;
+  background-color: #1e1e2e !important;
+}
+
+/* ── Tables: ensure visible text and alternating rows ── */
+.post-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.post-content table th {
+  background-color: #2d2d44 !important;
+  color: #ffffff !important;
+  padding: 0.7rem 1rem !important;
+  text-align: left;
+  font-weight: bold;
+  border: 1px solid #444 !important;
+}
+.post-content table td {
+  background-color: #1a1a2e !important;
+  color: #e0e0e0 !important;
+  padding: 0.55rem 1rem !important;
+  border: 1px solid #333 !important;
+}
+.post-content table tr:nth-child(even) td {
+  background-color: #22223a !important;
+}
+.post-content table tr:hover td {
+  background-color: #2a2a44 !important;
+}
+
+/* ── Blockquotes: visually distinct callout style ── */
+.post-content blockquote {
+  border-left: 4px solid #6272a4 !important;
+  background-color: #1e2030 !important;
+  padding: 0.9rem 1.4rem !important;
+  margin: 1.5rem 0 !important;
+  border-radius: 0 6px 6px 0;
+}
+.post-content blockquote p,
+.post-content blockquote li {
+  color: #cdd6f4 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── Headings: bright white so they stand out ── */
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  color: #ffffff !important;
+}
+
+/* ── Bold/strong text: always fully white ── */
+.post-content strong,
+.post-content b {
+  color: #ffffff !important;
+}
+
+/* ── Paragraph and list text: clear, readable gray-white ── */
+.post-content p,
+.post-content li {
+  color: #d0d0d0 !important;
+}
+</style>
+
 ## Score Overview
 
 | Metric | Result |
