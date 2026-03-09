@@ -4,3 +4,8 @@ pyyaml
 notebook
 requests
 python-dotenv
+flask
+flask-restful
+seaborn
+pandas
+scikit-learn
