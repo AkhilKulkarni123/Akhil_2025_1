@@ -6,6 +6,7 @@ requests
 python-dotenv
 flask
 flask-restful
+flask-cors
 seaborn
 pandas
 scikit-learn
